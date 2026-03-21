@@ -15,20 +15,47 @@ export const ThemeSwitcher = () => {
     getSnapshot,
     getServerSnapshot,
   );
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const bufferRef = useRef<AudioBuffer | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/sounds/switch.mp3");
-    audioRef.current.volume = 0.5;
+    const ctx = new AudioContext();
+    audioCtxRef.current = ctx;
+
+    fetch("/sounds/switch.mp3")
+      .then((res) => res.arrayBuffer())
+      .then((data) => ctx.decodeAudioData(data))
+      .then((buffer) => {
+        bufferRef.current = buffer;
+      })
+      .catch(() => {});
+
+    return () => {
+      ctx.close();
+    };
+  }, []);
+
+  const playSound = useCallback(() => {
+    const ctx = audioCtxRef.current;
+    const buffer = bufferRef.current;
+    if (!ctx || !buffer) return;
+
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+
+    const source = ctx.createBufferSource();
+    const gain = ctx.createGain();
+    gain.gain.value = 0.5;
+    source.buffer = buffer;
+    source.connect(gain).connect(ctx.destination);
+    source.start(0);
   }, []);
 
   const handleToggle = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => {});
-    }
+    playSound();
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  }, [resolvedTheme, setTheme]);
+  }, [resolvedTheme, setTheme, playSound]);
 
   if (!mounted) {
     return (
