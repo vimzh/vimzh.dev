@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ── Types ──
 
@@ -203,12 +203,16 @@ const makePetal = (
     y: base.y + Math.sin(angle) * petalLen * bulge + Math.sin(perp) * width,
   };
   const rcp2: Point = {
-    x: tip.x - Math.cos(angle) * petalLen * 0.15 + Math.cos(perp) * width * 0.25,
-    y: tip.y - Math.sin(angle) * petalLen * 0.15 + Math.sin(perp) * width * 0.25,
+    x:
+      tip.x - Math.cos(angle) * petalLen * 0.15 + Math.cos(perp) * width * 0.25,
+    y:
+      tip.y - Math.sin(angle) * petalLen * 0.15 + Math.sin(perp) * width * 0.25,
   };
   const lcp1: Point = {
-    x: tip.x - Math.cos(angle) * petalLen * 0.15 - Math.cos(perp) * width * 0.25,
-    y: tip.y - Math.sin(angle) * petalLen * 0.15 - Math.sin(perp) * width * 0.25,
+    x:
+      tip.x - Math.cos(angle) * petalLen * 0.15 - Math.cos(perp) * width * 0.25,
+    y:
+      tip.y - Math.sin(angle) * petalLen * 0.15 - Math.sin(perp) * width * 0.25,
   };
   const lcp2: Point = {
     x: base.x + Math.cos(angle) * petalLen * bulge - Math.cos(perp) * width,
@@ -279,12 +283,24 @@ const makeLeaf = (
     y: base.y + Math.sin(angle) * leafLen * bulge + Math.sin(perp) * leafWidth,
   };
   const rcp2: Point = {
-    x: tip.x - Math.cos(angle) * leafLen * 0.1 + Math.cos(perp) * leafWidth * 0.2,
-    y: tip.y - Math.sin(angle) * leafLen * 0.1 + Math.sin(perp) * leafWidth * 0.2,
+    x:
+      tip.x -
+      Math.cos(angle) * leafLen * 0.1 +
+      Math.cos(perp) * leafWidth * 0.2,
+    y:
+      tip.y -
+      Math.sin(angle) * leafLen * 0.1 +
+      Math.sin(perp) * leafWidth * 0.2,
   };
   const lcp1: Point = {
-    x: tip.x - Math.cos(angle) * leafLen * 0.1 - Math.cos(perp) * leafWidth * 0.2,
-    y: tip.y - Math.sin(angle) * leafLen * 0.1 - Math.sin(perp) * leafWidth * 0.2,
+    x:
+      tip.x -
+      Math.cos(angle) * leafLen * 0.1 -
+      Math.cos(perp) * leafWidth * 0.2,
+    y:
+      tip.y -
+      Math.sin(angle) * leafLen * 0.1 -
+      Math.sin(perp) * leafWidth * 0.2,
   };
   const lcp2: Point = {
     x: base.x + Math.cos(angle) * leafLen * bulge - Math.cos(perp) * leafWidth,
@@ -295,7 +311,12 @@ const makeLeaf = (
   const vein = `M ${f(base.x)} ${f(base.y)} L ${f(tip.x)} ${f(tip.y)}`;
 
   return [
-    { path: outline, thickness: 0.4, growthOrder: 0, pathLength: leafLen * 2.2 },
+    {
+      path: outline,
+      thickness: 0.4,
+      growthOrder: 0,
+      pathLength: leafLen * 2.2,
+    },
     { path: vein, thickness: 0.2, growthOrder: 0, pathLength: leafLen },
   ];
 };
@@ -380,7 +401,11 @@ const generatePlant = (config: PlantConfig): PlantData => {
       pathLength: branch.len,
     });
 
-    branchData.push({ tip: branch.end, angle: branchAngle, order: branchOrder });
+    branchData.push({
+      tip: branch.end,
+      angle: branchAngle,
+      order: branchOrder,
+    });
     order = Math.max(order, branchOrder + 1);
   }
 
@@ -440,7 +465,6 @@ const generatePlant = (config: PlantConfig): PlantData => {
 
   // ── 4b. Crown flower at the very top of the stem ──
   const stemTip = stems[stems.length - 1].end;
-  const stemTipAngle = stems[stems.length - 1].angle;
   const crownPetals = 5 + Math.floor(rand() * 2);
   const crownPetalLen = (20 + rand() * 15) * scale;
   const crownPetalWidth = crownPetalLen * (0.35 + rand() * 0.1);
@@ -449,7 +473,13 @@ const generatePlant = (config: PlantConfig): PlantData => {
   for (let p = 0; p < crownPetals; p++) {
     const petalAngle =
       crownBaseRot + (p / crownPetals) * Math.PI * 2 + (rand() - 0.5) * 0.15;
-    const petals = makePetal(stemTip, petalAngle, crownPetalLen, crownPetalWidth, rand);
+    const petals = makePetal(
+      stemTip,
+      petalAngle,
+      crownPetalLen,
+      crownPetalWidth,
+      rand,
+    );
 
     for (const el of petals) {
       el.growthOrder = order;
@@ -518,6 +548,26 @@ const PLANT_CONFIGS: PlantConfig[] = [
   { y: 2300, seed: 943, scale: 1.0, side: "right" },
 ];
 
+// ── Pre-computed plant data (module-level, runs once) ──
+
+const makePlants = (configs: PlantConfig[]): PlantData[] =>
+  configs.map((config, i) => {
+    const plant = generatePlant(config);
+    plant.growthStart = i * 0.25;
+    plant.growthEnd = Math.min(1, i * 0.25 + 0.45);
+    return plant;
+  });
+
+const getMaxOrders = (plants: PlantData[]) =>
+  plants.map((p) => p.elements.reduce((m, e) => Math.max(m, e.growthOrder), 0));
+
+const LEFT_PLANTS = makePlants(PLANT_CONFIGS.filter((c) => c.side === "left"));
+const RIGHT_PLANTS = makePlants(
+  PLANT_CONFIGS.filter((c) => c.side === "right"),
+);
+const LEFT_MAX_ORDERS = getMaxOrders(LEFT_PLANTS);
+const RIGHT_MAX_ORDERS = getMaxOrders(RIGHT_PLANTS);
+
 // ── Component ──
 
 export const BotanicalVines = () => {
@@ -525,27 +575,6 @@ export const BotanicalVines = () => {
   const [docHeight, setDocHeight] = useState(4000);
   const rafRef = useRef<number>(0);
   const lastScrollRef = useRef<number>(-1);
-
-  const leftConfigs = PLANT_CONFIGS.filter((c) => c.side === "left");
-  const rightConfigs = PLANT_CONFIGS.filter((c) => c.side === "right");
-
-  const makePlants = (configs: PlantConfig[]): PlantData[] =>
-    configs.map((config, i) => {
-      const plant = generatePlant(config);
-      // Wide, overlapping scroll windows for gradual growth
-      plant.growthStart = i * 0.25;
-      plant.growthEnd = Math.min(1, i * 0.25 + 0.45);
-      return plant;
-    });
-
-  const leftPlants = useMemo(() => makePlants(leftConfigs), []);
-  const rightPlants = useMemo(() => makePlants(rightConfigs), []);
-
-  const getMaxOrders = (plants: PlantData[]) =>
-    plants.map((p) => p.elements.reduce((m, e) => Math.max(m, e.growthOrder), 0));
-
-  const leftMaxOrders = useMemo(() => getMaxOrders(leftPlants), [leftPlants]);
-  const rightMaxOrders = useMemo(() => getMaxOrders(rightPlants), [rightPlants]);
 
   useEffect(() => {
     const update = () => {
@@ -585,7 +614,10 @@ export const BotanicalVines = () => {
       const range = plant.growthEnd - plant.growthStart;
       const localGrowth =
         range > 0
-          ? Math.min(1, Math.max(0, (scrollProgress - plant.growthStart) / range))
+          ? Math.min(
+              1,
+              Math.max(0, (scrollProgress - plant.growthStart) / range),
+            )
           : 0;
 
       const maxOrd = maxOrders[pi];
@@ -641,7 +673,7 @@ export const BotanicalVines = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {renderPlants(leftPlants, leftMaxOrders)}
+        {renderPlants(LEFT_PLANTS, LEFT_MAX_ORDERS)}
       </svg>
 
       {/* Right side — mirrored */}
@@ -653,7 +685,7 @@ export const BotanicalVines = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {renderPlants(rightPlants, rightMaxOrders)}
+        {renderPlants(RIGHT_PLANTS, RIGHT_MAX_ORDERS)}
       </svg>
     </div>
   );

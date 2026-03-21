@@ -82,15 +82,14 @@ export const fetchGitHubContributions = async (): Promise<{
   }
 
   const json = (await res.json()) as GitHubResponse;
-  const calendar =
-    json.data.user.contributionsCollection.contributionCalendar;
+  const calendar = json.data.user.contributionsCollection.contributionCalendar;
 
   const activities: Activity[] = calendar.weeks.flatMap((week) =>
     week.contributionDays.map((day) => ({
       date: day.date,
       count: day.contributionCount,
       level: levelMap[day.contributionLevel] ?? 0,
-    }))
+    })),
   );
 
   return {

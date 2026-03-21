@@ -44,9 +44,7 @@ export const GitHubContributions = ({
         <ContributionGraphCalendar>
           {({ activity, dayIndex, weekIndex }) => (
             <Tooltip>
-              <TooltipTrigger
-                render={<g className="cursor-pointer" />}
-              >
+              <TooltipTrigger render={<g className="cursor-pointer" />}>
                 <ContributionGraphBlock
                   activity={activity}
                   dayIndex={dayIndex}

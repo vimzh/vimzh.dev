@@ -1,0 +1,44 @@
+export const meta = {
+  title: "Building a contentEditable from scratch",
+  excerpt:
+    "How I replaced a native textarea with a contentEditable div to support inline ghost text, custom caret positioning, and autocomplete overlays without fighting the browser.",
+  date: "2026-03-12",
+  tags: ["DOM", "TypeScript", "Browser APIs"],
+};
+
+# Building a contentEditable from scratch
+
+Native textareas are great until you need to render inline ghost text or position an autocomplete overlay relative to the caret. At that point you're fighting the browser instead of building your feature.
+
+## The problem
+
+I was contributing to [intlayer](https://github.com/aymericzip/intlayer) and needed to show translucent autocomplete suggestions directly inside the text input — not in a dropdown below it, but inline, like a ghost continuation of what the user was typing.
+
+Textareas don't let you render arbitrary HTML alongside the user's text. They're opaque black boxes from the DOM's perspective.
+
+## The solution
+
+Replace the textarea with a `contentEditable` div. This gives you full control over the DOM inside the input, which means you can:
+
+- Render ghost text as a `<span>` with reduced opacity after the caret
+- Position autocomplete overlays using `window.getSelection()` and `Range.getBoundingClientRect()`
+- Handle paste events to strip formatting and insert plain text
+
+## Key challenges
+
+The hardest part wasn't rendering — it was maintaining consistent caret behavior across browsers. Firefox and Chrome handle `contentEditable` selection differently, and you need to normalize the behavior yourself.
+
+```typescript
+const setCaret = (node: Node, offset: number) => {
+  const range = document.createRange();
+  range.setStart(node, offset);
+  range.collapse(true);
+  const sel = window.getSelection();
+  sel?.removeAllRanges();
+  sel?.addRange(range);
+};
+```
+
+## Takeaway
+
+`contentEditable` is powerful but low-level. If you only need styled text input, reach for a library. If you need pixel-perfect control over what renders inside the input, it's the only real option.

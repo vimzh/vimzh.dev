@@ -3,9 +3,8 @@
 import { Download } from "lucide-react";
 import { useEffect } from "react";
 
+import { site } from "@/lib/content";
 import { useResumeDialog } from "@/stores/resumeDialog";
-
-const RESUME_PATH = "/resume.pdf";
 
 export const ResumeDialog = () => {
   const { isOpen, close } = useResumeDialog();
@@ -48,7 +47,7 @@ export const ResumeDialog = () => {
           <div className="p-3">
             <div className="overflow-hidden rounded-md border border-border-subtle bg-surface">
               <iframe
-                src={`${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=0`}
+                src={`${site.resumePath}#toolbar=0&navpanes=0&scrollbar=0`}
                 className="h-[65vh] w-full"
                 title="Resume preview"
               />
@@ -60,7 +59,7 @@ export const ResumeDialog = () => {
               PDF preview
             </span>
             <a
-              href={RESUME_PATH}
+              href={site.resumePath}
               download
               className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-[12px] font-medium text-foreground-inverse transition-opacity hover:opacity-80"
             >

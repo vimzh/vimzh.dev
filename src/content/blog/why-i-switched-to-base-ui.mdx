@@ -1,0 +1,50 @@
+export const meta = {
+  title: "Why I switched to Base UI",
+  excerpt:
+    "Radix served me well for years, but the render prop composition model in Base UI finally gave me the control I wanted over styling and behavior without wrapper component bloat.",
+  date: "2026-02-24",
+  tags: ["React", "Base UI"],
+};
+
+# Why I switched to Base UI
+
+I used Radix UI for almost every project since 2023. It's excellent — accessible, composable, well-tested. But every time I needed to customize rendering, I hit the same friction: `asChild`.
+
+## The asChild problem
+
+Radix's `asChild` prop uses `Slot` internally to merge props onto a child element. It works, but it creates invisible coupling between parent and child, and debugging style conflicts requires understanding the merge algorithm.
+
+```tsx
+// Radix: asChild merges props onto the child
+<TooltipTrigger asChild>
+  <button className="my-button">Hover me</button>
+</TooltipTrigger>
+```
+
+## The render prop alternative
+
+Base UI uses `render` props instead. You pass the element directly, and Base UI renders it with the necessary accessibility attributes:
+
+```tsx
+// Base UI: render prop gives you full control
+<TooltipTrigger render={<button className="my-button" />}>
+  Hover me
+</TooltipTrigger>
+```
+
+The difference is subtle but meaningful. With `render`, there's no prop merging magic. You can see exactly what element will be rendered. TypeScript can fully type-check the render target.
+
+## What I gained
+
+- No more `asChild` debugging
+- Better TypeScript inference on composed elements
+- Simpler mental model for customization
+- Smaller bundle — Base UI ships less runtime code
+
+## What I gave up
+
+- Radix has a larger ecosystem of pre-built components
+- Some Base UI components are still experimental
+- Community resources and examples are more abundant for Radix
+
+For my use case — building custom UI from primitives — the tradeoff was worth it.

@@ -1,0 +1,24 @@
+[
+  {
+    "company": "Autonymo",
+    "role": "AI Intern",
+    "period": "Feb 2026 — Present",
+    "location": "Spain · Remote",
+    "tags": ["Next.js", "Vercel AI SDK", "Redis", "PostgreSQL", "Docker"]
+  },
+  {
+    "company": "Astroraag",
+    "role": "Software Intern",
+    "period": "Feb 2026 — Present",
+    "location": "India · Remote",
+    "tags": ["Flutter", "Firebase", "FastAPI", "Node.js"]
+  },
+  {
+    "company": "Stealth Startup",
+    "blurred": true,
+    "role": "Founding Backend Engineer",
+    "period": "Oct 2025 — Present",
+    "location": "India · Remote",
+    "tags": ["Go", "gRPC", "Kafka", "PostgreSQL", "AWS"]
+  }
+]

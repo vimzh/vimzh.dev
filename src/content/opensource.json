@@ -1,0 +1,32 @@
+[
+  {
+    "repo": "htmlparser2",
+    "owner": "fb55",
+    "description": "Add WebWritableStream for Web Streams API support — enables piping fetch() responses directly into the parser",
+    "type": "pr",
+    "url": "https://github.com/fb55/htmlparser2/pull/2376",
+    "status": "merged",
+    "stars": "4.8k",
+    "npm": "https://www.npmjs.com/package/htmlparser2"
+  },
+  {
+    "repo": "virtua",
+    "owner": "inokawa",
+    "description": "Add Base UI ScrollArea story for virtualized scrolling with custom scrollbars",
+    "type": "pr",
+    "url": "https://github.com/inokawa/virtua/pull/870",
+    "status": "merged",
+    "stars": "3.5k",
+    "npm": "https://www.npmjs.com/package/virtua"
+  },
+  {
+    "repo": "intlayer",
+    "owner": "aymericzip",
+    "description": "Replace native textarea with contentEditable div for inline autocomplete ghost text rendering",
+    "type": "pr",
+    "url": "https://github.com/aymericzip/intlayer/pull/394",
+    "status": "merged",
+    "stars": "636",
+    "npm": "https://www.npmjs.com/package/intlayer"
+  }
+]

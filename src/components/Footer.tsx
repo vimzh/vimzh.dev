@@ -1,6 +1,7 @@
 "use client";
 
-import { socials } from "@/data/site";
+import { site } from "@/lib/content";
+import { getIcon } from "@/lib/icons";
 import { useContactDialog } from "@/stores/contactDialog";
 
 export const Footer = () => {
@@ -13,7 +14,7 @@ export const Footer = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-foreground-tertiary">
-                built with love by vimzh
+                {site.footer}
               </span>
               <span className="h-3 w-px bg-border-subtle" />
               <button
@@ -25,18 +26,21 @@ export const Footer = () => {
             </div>
 
             <div className="flex items-center gap-1">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-7 w-7 items-center justify-center rounded-md text-foreground-tertiary transition-colors hover:text-foreground"
-                  aria-label={social.label}
-                >
-                  <social.icon size={14} />
-                </a>
-              ))}
+              {site.socials.map((social) => {
+                const Icon = getIcon(social.icon);
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-7 w-7 items-center justify-center rounded-md text-foreground-tertiary transition-colors hover:text-foreground"
+                    aria-label={social.label}
+                  >
+                    <Icon size={14} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

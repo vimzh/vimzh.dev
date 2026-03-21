@@ -6,13 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { site } from "@/lib/content";
 import { useCommandMenu } from "@/stores/commandMenu";
-
-const navLinks = [
-  { label: "Projects", href: "/", key: "p" },
-  { label: "Components", href: "/components", key: "c" },
-  { label: "Blog", href: "/blog", key: "b" },
-];
 
 export const Navbar = () => {
   const { open, isOpen } = useCommandMenu();
@@ -32,7 +27,7 @@ export const Navbar = () => {
         return;
       }
 
-      const link = navLinks.find((l) => l.key === e.key.toLowerCase());
+      const link = site.navLinks.find((l) => l.key === e.key.toLowerCase());
       if (link) {
         e.preventDefault();
         router.push(link.href);
@@ -66,12 +61,12 @@ export const Navbar = () => {
             href="/"
             className="font-mono text-[13px] font-semibold text-foreground"
           >
-            vimzh.dev
+            {site.siteName}
           </Link>
 
           <div className="flex items-center gap-0.5">
             <nav className="flex items-center gap-0.5">
-              {navLinks.map((link) => (
+              {site.navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -103,7 +98,7 @@ export const Navbar = () => {
             </button>
 
             <a
-              href="https://github.com/vimzh"
+              href={site.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-foreground-secondary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground hover:bg-muted"

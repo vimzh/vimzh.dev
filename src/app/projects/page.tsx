@@ -2,7 +2,18 @@ import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { projects } from "@/data/site";
+import { projects } from "@/lib/content";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Projects by vimzh — full-stack apps, developer tools, and open source work.",
+  alternates: {
+    canonical: "/projects",
+  },
+};
 
 export default function ProjectsPage() {
   return (

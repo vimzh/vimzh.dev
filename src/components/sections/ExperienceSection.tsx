@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { experiences } from "@/data/site";
+import { experiences } from "@/lib/content";
 
 export const ExperienceSection = () => (
   <section className="mx-auto w-[60%] max-w-7xl px-4 pb-16">

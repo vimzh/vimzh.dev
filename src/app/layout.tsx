@@ -1,29 +1,90 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Geist_Mono } from "next/font/google";
 
-import { BotanicalVines } from "@/components/BotanicalVines";
 import { BottomBlur } from "@/components/BottomBlur";
-import { CommandMenu } from "@/components/CommandMenu";
-import { ContactDialog } from "@/components/ContactDialog";
-import { ResumeDialog } from "@/components/ResumeDialog";
 import { Footer } from "@/components/Footer";
-import { DotGrid } from "@/components/DotGrid";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { site } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
+const DotGrid = dynamic(() =>
+  import("@/components/DotGrid").then((m) => ({ default: m.DotGrid })),
+);
+const BotanicalVines = dynamic(() =>
+  import("@/components/BotanicalVines").then((m) => ({
+    default: m.BotanicalVines,
+  })),
+);
+const CommandMenu = dynamic(() =>
+  import("@/components/CommandMenu").then((m) => ({ default: m.CommandMenu })),
+);
+const ContactDialog = dynamic(() =>
+  import("@/components/ContactDialog").then((m) => ({
+    default: m.ContactDialog,
+  })),
+);
+const ResumeDialog = dynamic(() =>
+  import("@/components/ResumeDialog").then((m) => ({
+    default: m.ResumeDialog,
+  })),
+);
+
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  display: "swap",
+  weight: ["200", "400", "500", "600"],
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: site.themeColors.light },
+    { media: "(prefers-color-scheme: dark)", color: site.themeColors.dark },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "vimzh.dev",
-  description: "Full-stack AI developer, open source contributor",
+  title: {
+    default: `${site.name} (${site.siteName}) — ${site.roles[0]}`,
+    template: `%s — ${site.siteName}`,
+  },
+  description: site.description,
+  metadataBase: new URL(site.url),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: `${site.name} — ${site.roles.slice(0, 2).join(", ")}`,
+    description: site.description,
+    url: site.url,
+    siteName: site.siteName,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.roles[0]}`,
+    description: site.description,
+    creator: site.twitterHandle,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -34,11 +95,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        "h-full antialiased",
-        geistMono.variable,
-        "font-mono",
-      )}
+      className={cn("h-full antialiased", geistMono.variable, "font-mono")}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

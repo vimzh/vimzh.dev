@@ -1,0 +1,44 @@
+export const meta = {
+  title: "My open source contribution workflow",
+  excerpt:
+    "The system I use to find meaningful issues, understand unfamiliar codebases quickly, and write PRs that actually get merged — without burning out.",
+  date: "2026-01-19",
+  tags: ["Open Source", "Workflow"],
+};
+
+# My open source contribution workflow
+
+I've had PRs merged into htmlparser2, virtua, and intlayer — all projects I'd never seen before opening the codebase. Here's the system I use.
+
+## Finding the right issue
+
+I don't browse "good first issue" labels. Most of those are either trivial or already claimed. Instead:
+
+1. **Use the tools I want to contribute to.** Real usage surfaces real friction.
+2. **Read the issue tracker for feature requests.** Maintainers often describe what they want but don't have time to build.
+3. **Look at recent PRs.** If a PR was closed without merge, it might be a good idea with a bad implementation — you can take a better approach.
+
+## Understanding the codebase
+
+Before writing any code, I spend time reading:
+
+- **The entry point.** Where does execution start? What's the public API?
+- **The test suite.** Tests document behavior better than comments. They also show you the patterns the maintainer expects.
+- **Recent commits.** How does the maintainer format code? What conventions do they follow?
+
+I use `git log --oneline -20` and skim the test directory before anything else.
+
+## Writing the PR
+
+My PRs follow a pattern:
+
+1. **One commit, one concern.** Don't bundle unrelated changes.
+2. **Match existing style exactly.** Don't reformulate, don't add your preferred linting rules.
+3. **Write tests that mirror existing test patterns.** If they use `describe/it`, you use `describe/it`.
+4. **Keep the description short.** Link to the issue, explain the approach in 2-3 sentences, show before/after if visual.
+
+## Avoiding burnout
+
+Open source contribution should be driven by genuine interest, not obligation. I contribute when I find something I want to fix for myself. If a PR gets stuck in review, I move on — I'll check back later.
+
+The goal isn't volume. It's writing code that helps people.

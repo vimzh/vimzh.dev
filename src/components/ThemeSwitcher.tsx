@@ -2,15 +2,22 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
+
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    setMounted(true);
     audioRef.current = new Audio("/sounds/switch.mp3");
     audioRef.current.volume = 0.5;
   }, []);
@@ -40,7 +47,11 @@ export const ThemeSwitcher = () => {
       className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-foreground-secondary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground hover:bg-muted"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
-      {theme === "dark" ? <Sun size={16} className="shrink-0" /> : <Moon size={16} className="shrink-0" />}
+      {theme === "dark" ? (
+        <Sun size={16} className="shrink-0" />
+      ) : (
+        <Moon size={16} className="shrink-0" />
+      )}
     </button>
   );
 };

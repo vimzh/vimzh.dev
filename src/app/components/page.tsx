@@ -2,66 +2,19 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { components } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-type ComponentItem = {
-  name: string;
-  description: string;
-  tags: string[];
-  href: string;
-  previewBg: string;
-};
+import type { Metadata } from "next";
 
-const components: ComponentItem[] = [
-  {
-    name: "Button",
-    description:
-      "Polymorphic button with size, variant, and loading states. Composes with Base UI for accessibility.",
-    tags: ["React", "Tailwind", "Base UI"],
-    href: "#",
-    previewBg: "bg-accent-subtle",
+export const metadata: Metadata = {
+  title: "Components",
+  description:
+    "Reusable UI components by vimzh, built with React, Tailwind, and Base UI.",
+  alternates: {
+    canonical: "/components",
   },
-  {
-    name: "Badge",
-    description:
-      "Inline label for status, categories, and metadata. Supports outline, ghost, and destructive variants.",
-    tags: ["React", "Tailwind", "CVA"],
-    href: "#",
-    previewBg: "bg-muted",
-  },
-  {
-    name: "Tooltip",
-    description:
-      "Context hint that appears on hover or focus. Positioned with Base UI floating primitives.",
-    tags: ["React", "Base UI", "Tailwind"],
-    href: "#",
-    previewBg: "bg-surface-sunken",
-  },
-  {
-    name: "Command Menu",
-    description:
-      "Keyboard-first command palette for navigation and actions. Filterable with fuzzy search.",
-    tags: ["React", "Tailwind", "cmdk"],
-    href: "#",
-    previewBg: "bg-accent-subtle",
-  },
-  {
-    name: "Contribution Graph",
-    description:
-      "GitHub-style activity heatmap rendered from contribution data. Color-coded intensity levels.",
-    tags: ["React", "Tailwind", "GitHub API"],
-    href: "#",
-    previewBg: "bg-muted",
-  },
-  {
-    name: "Theme Switcher",
-    description:
-      "Multi-theme toggle with system detection. Persists preference and transitions smoothly.",
-    tags: ["React", "Tailwind", "Zustand"],
-    href: "#",
-    previewBg: "bg-surface-sunken",
-  },
-];
+};
 
 export default function ComponentsPage() {
   return (

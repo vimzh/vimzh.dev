@@ -82,8 +82,7 @@ export const DotGrid = () => {
           const ease = t * t * (3 - 2 * t);
 
           const radius =
-            (DOT_BASE_RADIUS + (DOT_MAX_RADIUS - DOT_BASE_RADIUS) * ease) *
-            dpr;
+            (DOT_BASE_RADIUS + (DOT_MAX_RADIUS - DOT_BASE_RADIUS) * ease) * dpr;
           const opacity = BASE_OPACITY + (MAX_OPACITY - BASE_OPACITY) * ease;
 
           const r = Math.round(

@@ -1,5 +1,3 @@
-"use client";
-
 export const BottomBlur = () => (
   <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[1000] h-20">
     {/* Layered backdrop-blur strips for gradual buildup */}

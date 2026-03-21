@@ -1,0 +1,107 @@
+{
+  "name": "vimzh",
+  "siteName": "vimzh.dev",
+  "url": "https://vimzh.dev",
+  "email": "vimzh.dev@gmail.com",
+  "displayEmail": "hi@vimzh.dev",
+  "description": "vimzh — Full-stack AI developer, open source contributor, and freelance engineer building with TypeScript, React, and LLMs",
+  "twitterHandle": "@vimzh",
+  "githubUrl": "https://github.com/vimzh",
+  "profileImage": "/pfp.gif",
+  "resumePath": "/resume.pdf",
+  "status": "Open to freelance",
+  "roles": ["Fullstack Engineer", "AI Engineer", "Opensource Contributor"],
+  "about": "I'm a full-stack developer obsessed with AI and clean, minimal interfaces. I love building things from scratch, figuring out hard problems and shipping fast. Most of my time goes into writing code, contributing to open source and exploring what's possible with LLMs. Always open to interesting projects and collaborations, if you're working on something cool",
+  "footer": "built with love by vimzh",
+  "themeColors": {
+    "light": "#f7f4f0",
+    "dark": "#111010"
+  },
+  "socials": [
+    { "icon": "x", "href": "https://x.com/vimzh", "label": "X" },
+    { "icon": "github", "href": "https://github.com/vimzh", "label": "GitHub" },
+    {
+      "icon": "hashnode",
+      "href": "https://hashnode.com/@vimzh",
+      "label": "Hashnode"
+    },
+    {
+      "icon": "medium",
+      "href": "https://medium.com/@vimzh",
+      "label": "Medium"
+    },
+    { "icon": "discord", "href": "https://discord.com", "label": "Discord" },
+    {
+      "icon": "linkedin",
+      "href": "https://linkedin.com/in/vimzh",
+      "label": "LinkedIn"
+    }
+  ],
+  "navLinks": [
+    { "label": "Projects", "href": "/", "key": "p" },
+    { "label": "Components", "href": "/components", "key": "c" },
+    { "label": "Blog", "href": "/blog", "key": "b" }
+  ],
+  "commandMenu": {
+    "navigation": [
+      {
+        "id": "home",
+        "label": "Home",
+        "href": "/",
+        "icon": "home",
+        "keywords": ["index", "landing"]
+      },
+      {
+        "id": "portfolio",
+        "label": "Portfolio",
+        "href": "/",
+        "icon": "layout-grid",
+        "keywords": ["work", "projects", "showcase"]
+      },
+      {
+        "id": "components",
+        "label": "Components",
+        "href": "/components",
+        "icon": "box",
+        "keywords": ["ui", "design", "library"]
+      },
+      {
+        "id": "blog",
+        "label": "Blog",
+        "href": "/blog",
+        "icon": "newspaper",
+        "keywords": ["posts", "articles", "writing"]
+      }
+    ],
+    "sections": [
+      {
+        "id": "about",
+        "label": "About",
+        "href": "/#about",
+        "icon": "user",
+        "keywords": ["me", "bio", "introduction"]
+      },
+      {
+        "id": "experience",
+        "label": "Experience",
+        "href": "/#experience",
+        "icon": "briefcase",
+        "keywords": ["work", "career", "jobs"]
+      },
+      {
+        "id": "projects",
+        "label": "Projects",
+        "href": "/#projects",
+        "icon": "folder",
+        "keywords": ["repos", "showcase"]
+      },
+      {
+        "id": "contact",
+        "label": "Contact",
+        "href": "/#contact",
+        "icon": "mail",
+        "keywords": ["email", "reach", "connect"]
+      }
+    ]
+  }
+}

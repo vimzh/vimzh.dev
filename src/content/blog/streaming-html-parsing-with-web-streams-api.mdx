@@ -1,0 +1,43 @@
+export const meta = {
+  title: "Streaming HTML parsing with Web Streams API",
+  excerpt:
+    "Piping a fetch() response directly into htmlparser2 using WritableStream — what I learned contributing the WebWritableStream adapter upstream.",
+  date: "2026-02-08",
+  tags: ["Web Streams", "Open Source", "Node.js"],
+};
+
+# Streaming HTML parsing with Web Streams API
+
+When you need to parse HTML from a network response, the typical approach is: fetch the entire body, then parse it. But for large documents, this means buffering megabytes in memory before processing starts.
+
+## The idea
+
+The Web Streams API lets you process data as it arrives. If you could pipe a `fetch()` response directly into an HTML parser, you'd get:
+
+- Lower memory usage (no full-body buffering)
+- Faster time-to-first-result (parsing starts immediately)
+- Backpressure support (the parser controls how fast data flows)
+
+## Contributing to htmlparser2
+
+[htmlparser2](https://github.com/fb55/htmlparser2) already supported Node.js streams via `WritableStream`. But it didn't support the Web Streams API — the browser-native stream interface.
+
+I opened a [PR](https://github.com/fb55/htmlparser2/pull/2376) to add a `WebWritableStream` adapter. The implementation wraps htmlparser2's `Parser` in a `WritableStream` that the browser's `fetch()` can pipe into:
+
+```typescript
+const parser = new WebWritableStream(handler);
+const response = await fetch(url);
+await response.body.pipeTo(parser);
+```
+
+## What I learned
+
+1. **WritableStream's `write()` receives `Uint8Array` chunks** — you need a `TextDecoder` to convert them to strings before feeding them to the parser.
+
+2. **Backpressure is automatic** — the stream runtime pauses the source when the sink (parser) isn't ready. No manual buffering needed.
+
+3. **Error propagation matters** — if the parser throws, the error needs to flow back to the fetch stream to cancel the network request.
+
+## The result
+
+The PR was merged and shipped. You can now parse HTML from `fetch()` responses without buffering the entire body — in browsers and in Deno/Bun/Cloudflare Workers that support Web Streams natively.

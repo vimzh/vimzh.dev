@@ -2,7 +2,7 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { projects } from "@/data/site";
+import { projects } from "@/lib/content";
 
 export const ProjectsSection = () => (
   <section className="mx-auto w-[60%] max-w-7xl px-4 pb-16">

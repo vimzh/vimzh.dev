@@ -1,19 +1,11 @@
 "use client";
 
-import {
-  Briefcase,
-  Box,
-  Folder,
-  Home,
-  LayoutGrid,
-  Mail,
-  Newspaper,
-  Search,
-  User,
-} from "lucide-react";
+import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { site } from "@/lib/content";
+import { getIcon } from "@/lib/icons";
 import { useCommandMenu } from "@/stores/commandMenu";
 
 interface CommandItem {
@@ -25,75 +17,31 @@ interface CommandItem {
   keywords?: string[];
 }
 
-const navigationItems: CommandItem[] = [
-  {
-    id: "home",
-    label: "Home",
+const navigationItems: CommandItem[] = site.commandMenu.navigation.map(
+  (item) => ({
+    id: item.id,
+    label: item.label,
     section: "Navigation",
-    href: "/",
-    icon: <Home size={16} />,
-    keywords: ["index", "landing"],
-  },
-  {
-    id: "portfolio",
-    label: "Portfolio",
-    section: "Navigation",
-    href: "/",
-    icon: <LayoutGrid size={16} />,
-    keywords: ["work", "projects", "showcase"],
-  },
-  {
-    id: "components",
-    label: "Components",
-    section: "Navigation",
-    href: "/components",
-    icon: <Box size={16} />,
-    keywords: ["ui", "design", "library"],
-  },
-  {
-    id: "blog",
-    label: "Blog",
-    section: "Navigation",
-    href: "/blog",
-    icon: <Newspaper size={16} />,
-    keywords: ["posts", "articles", "writing"],
-  },
-];
+    href: item.href,
+    icon: (() => {
+      const Icon = getIcon(item.icon);
+      return <Icon size={16} />;
+    })(),
+    keywords: item.keywords,
+  }),
+);
 
-const sectionItems: CommandItem[] = [
-  {
-    id: "about",
-    label: "About",
-    section: "Sections",
-    href: "/#about",
-    icon: <User size={16} />,
-    keywords: ["me", "bio", "introduction"],
-  },
-  {
-    id: "experience",
-    label: "Experience",
-    section: "Sections",
-    href: "/#experience",
-    icon: <Briefcase size={16} />,
-    keywords: ["work", "career", "jobs"],
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    section: "Sections",
-    href: "/#projects",
-    icon: <Folder size={16} />,
-    keywords: ["repos", "showcase"],
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    section: "Sections",
-    href: "/#contact",
-    icon: <Mail size={16} />,
-    keywords: ["email", "reach", "connect"],
-  },
-];
+const sectionItems: CommandItem[] = site.commandMenu.sections.map((item) => ({
+  id: item.id,
+  label: item.label,
+  section: "Sections",
+  href: item.href,
+  icon: (() => {
+    const Icon = getIcon(item.icon);
+    return <Icon size={16} />;
+  })(),
+  keywords: item.keywords,
+}));
 
 const allItems = [...navigationItems, ...sectionItems];
 

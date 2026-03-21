@@ -1,9 +1,9 @@
 import { GitMerge, GitPullRequest, CircleDot, Star } from "lucide-react";
 import Link from "next/link";
 
-import { openSourceContributions } from "@/data/site";
+import { openSourceContributions } from "@/lib/content";
 
-import type { OpenSourceContribution } from "@/data/site";
+import type { OpenSourceContribution } from "@/lib/content";
 
 const statusStyles: Record<OpenSourceContribution["status"], string> = {
   merged: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
@@ -45,7 +45,9 @@ export const OpenSourceSection = () => {
             className="flex items-start justify-between gap-4 px-3 py-2.5 -mx-3"
           >
             <div className="flex items-start gap-2.5 min-w-0">
-              <div className={`mt-0.5 ${contrib.status === "merged" ? "text-purple-600 dark:text-purple-400" : "text-foreground-tertiary"}`}>
+              <div
+                className={`mt-0.5 ${contrib.status === "merged" ? "text-purple-600 dark:text-purple-400" : "text-foreground-tertiary"}`}
+              >
                 <TypeIcon type={contrib.type} />
               </div>
               <div className="min-w-0">
@@ -69,7 +71,10 @@ export const OpenSourceSection = () => {
                   )}
                   {contrib.stars && (
                     <span className="inline-flex items-center gap-0.5 text-xs text-foreground-secondary">
-                      <Star size={11} className="fill-foreground-tertiary text-foreground-tertiary" />
+                      <Star
+                        size={11}
+                        className="fill-foreground-tertiary text-foreground-tertiary"
+                      />
                       {contrib.stars}
                     </span>
                   )}
