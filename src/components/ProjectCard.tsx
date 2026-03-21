@@ -13,11 +13,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const hasPreview = !!project.preview;
 
   return (
-    <div className="group/card flex flex-col rounded-lg border border-transparent p-4 transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:border-border-subtle hover:bg-background hover:shadow-md">
+    <div className="group/card flex flex-col rounded-lg border border-border-subtle p-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:border-border-strong hover:bg-background hover:shadow-md">
       {/* Preview area */}
       <div
         className={cn(
           "relative flex h-44 items-center justify-center overflow-hidden rounded-md border border-border-subtle",
+          !hasPreview && project.previewBg,
         )}
       >
         {hasPreview ? (
@@ -29,40 +30,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
             className="object-cover object-top transition-transform duration-[4s] ease-[var(--ease-out)] group-hover/card:translate-y-[-20%]"
           />
         ) : (
-          <div
-            className="absolute inset-0 transition-transform duration-[3s] ease-[var(--ease-out)] group-hover/card:scale-105"
-            style={{
-              background: `linear-gradient(145deg, ${project.gradient[0]}, ${project.gradient[1]})`,
-            }}
-          >
-            <svg
-              className="absolute inset-0 h-full w-full opacity-[0.04]"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id={`grid-${project.name}`}
-                  width="32"
-                  height="32"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M 32 0 L 0 0 0 32"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill={`url(#grid-${project.name})`} />
-            </svg>
-
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-mono text-[72px] font-extralight tracking-tighter text-white/[0.06] transition-all duration-[var(--duration-slow)] ease-[var(--ease-out)] group-hover/card:text-white/[0.1] group-hover/card:tracking-normal select-none">
-                {project.name}
-              </span>
-            </div>
-          </div>
+          <span className="text-xs text-foreground-tertiary select-none">
+            {project.name}
+          </span>
         )}
       </div>
 

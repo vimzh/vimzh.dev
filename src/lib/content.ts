@@ -79,7 +79,7 @@ export type Project = {
   github?: string;
   wip?: boolean;
   preview?: string;
-  gradient: [string, string];
+  previewBg: string;
 };
 
 export type ComponentItem = {

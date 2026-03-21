@@ -6,7 +6,7 @@
     "category": "ai",
     "url": "https://kairoi.app",
     "github": "https://github.com/vimzh/kairoi",
-    "gradient": ["#1a1a2e", "#16213e"]
+    "previewBg": "bg-accent-subtle"
   },
   {
     "name": "Patchwork",
@@ -15,7 +15,7 @@
     "category": "fullstack",
     "github": "https://github.com/vimzh/patchwork",
     "wip": true,
-    "gradient": ["#2d1b30", "#1a1225"]
+    "previewBg": "bg-muted"
   },
   {
     "name": "CloudSync",
@@ -23,7 +23,7 @@
     "tags": ["Go", "gRPC", "Redis", "S3"],
     "category": "fullstack",
     "github": "https://github.com/vimzh/cloudsync",
-    "gradient": ["#0f2027", "#203a43"]
+    "previewBg": "bg-surface-sunken"
   },
   {
     "name": "Lattice",
@@ -32,7 +32,7 @@
     "category": "fullstack",
     "github": "https://github.com/vimzh/lattice",
     "url": "https://lattice.run",
-    "gradient": ["#1a1a1a", "#2d2d2d"]
+    "previewBg": "bg-accent-subtle"
   },
   {
     "name": "Terma",
@@ -40,7 +40,7 @@
     "tags": ["Rust", "WebGPU", "WASM"],
     "category": "fullstack",
     "wip": true,
-    "gradient": ["#0d1117", "#161b22"]
+    "previewBg": "bg-muted"
   },
   {
     "name": "Spectra",
@@ -49,6 +49,6 @@
     "category": "frontend",
     "github": "https://github.com/vimzh/spectra",
     "url": "https://spectra.dev",
-    "gradient": ["#1e1e2e", "#302b42"]
+    "previewBg": "bg-surface-sunken"
   }
 ]
