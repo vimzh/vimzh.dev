@@ -653,8 +653,8 @@ export const BotanicalVines = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
-                strokeDasharray={el.pathLength}
-                strokeDashoffset={el.pathLength * (1 - elGrowth)}
+                strokeDasharray={Math.round(el.pathLength * 100) / 100}
+                strokeDashoffset={Math.round(el.pathLength * (1 - elGrowth) * 100) / 100}
               />
             );
           })}
