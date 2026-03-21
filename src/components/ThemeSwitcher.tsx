@@ -9,7 +9,7 @@ const getSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 export const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const mounted = useSyncExternalStore(
     subscribe,
     getSnapshot,
@@ -27,8 +27,8 @@ export const ThemeSwitcher = () => {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {});
     }
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   if (!mounted) {
     return (
@@ -45,9 +45,9 @@ export const ThemeSwitcher = () => {
     <button
       onClick={handleToggle}
       className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-foreground-secondary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground hover:bg-muted"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
     >
-      {theme === "dark" ? (
+      {resolvedTheme === "dark" ? (
         <Sun size={16} className="shrink-0" />
       ) : (
         <Moon size={16} className="shrink-0" />
