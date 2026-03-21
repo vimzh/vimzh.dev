@@ -8,7 +8,7 @@ export const ProjectsSection = () => (
   <section className="mx-auto w-[60%] max-w-7xl px-4 pb-16">
     <Link
       href="/projects"
-      className="group inline-flex items-center gap-1.5 transition-colors"
+      className="group inline-flex w-fit items-center gap-1.5 transition-colors"
     >
       <h2 className="font-mono text-sm font-medium text-foreground-secondary group-hover:text-foreground transition-colors">
         Projects
