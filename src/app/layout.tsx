@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
 import { Geist_Mono } from "next/font/google";
 
+import { Analytics } from "@vercel/analytics/next";
+
 import { BottomBlur } from "@/components/BottomBlur";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -114,6 +116,7 @@ export default function RootLayout({
             <Footer />
             <BottomBlur />
           </TooltipProvider>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
