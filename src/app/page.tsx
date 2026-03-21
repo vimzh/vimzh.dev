@@ -15,7 +15,13 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([personJsonLd(), websiteJsonLd()]),
+          __html: JSON.stringify(personJsonLd()),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteJsonLd()),
         }}
       />
       <HeroSection />
