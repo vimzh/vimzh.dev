@@ -9,9 +9,9 @@ export const Footer = () => {
 
   return (
     <footer className="relative z-10 pb-20 pt-8">
-      <div className="mx-auto w-[60%] max-w-7xl px-4">
+      <div className="mx-auto w-full max-w-7xl px-5 md:w-[60%] md:px-4">
         <div className="border-t border-border-subtle pt-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-foreground-tertiary">
                 {site.footer}

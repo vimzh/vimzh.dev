@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { experiences } from "@/lib/content";
 
 export const ExperienceSection = () => (
-  <section className="mx-auto w-[60%] max-w-7xl px-4 pb-16">
+  <section className="mx-auto w-full max-w-7xl px-5 pb-16 md:w-[60%] md:px-4">
     <Link
       href="/experience"
       className="group inline-flex w-fit items-center gap-1.5 transition-colors"
@@ -20,7 +20,7 @@ export const ExperienceSection = () => (
     </Link>
     <div className="mt-3 flex flex-col gap-4">
       {experiences.map((exp) => (
-        <div key={exp.company} className="flex items-start justify-between">
+        <div key={exp.company} className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div>
             <p
               className={`text-sm font-medium text-foreground ${exp.blurred ? "blur-[5px] select-none pointer-events-none" : ""}`}
@@ -45,7 +45,7 @@ export const ExperienceSection = () => (
               </div>
             )}
           </div>
-          <div className="text-right shrink-0">
+          <div className="shrink-0 sm:text-right">
             <p className="text-xs text-foreground-secondary">{exp.period}</p>
             <p className="mt-0.5 text-xs text-foreground-tertiary">
               {exp.location}

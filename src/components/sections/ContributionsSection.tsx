@@ -11,7 +11,7 @@ export const ContributionsSection = ({
   activities,
   totalContributions,
 }: ContributionsSectionProps) => (
-  <section className="relative mx-auto w-[60%] max-w-7xl px-4 pb-24">
+  <section className="relative mx-auto w-full max-w-7xl px-5 pb-24 md:w-[60%] md:px-4">
     {/* Background mask — fades out the dot grid behind the graph */}
     <div
       className="pointer-events-none absolute -inset-x-8 -inset-y-4 -z-1 rounded-2xl"
@@ -23,7 +23,7 @@ export const ContributionsSection = ({
     <h2 className="font-mono text-sm font-medium text-foreground-secondary">
       Contributions
     </h2>
-    <div className="mt-3">
+    <div className="mt-3 -mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
       <GitHubContributions
         activities={activities}
         totalContributions={totalContributions}

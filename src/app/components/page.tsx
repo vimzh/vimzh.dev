@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function ComponentsPage() {
   return (
-    <section className="mx-auto w-[60%] max-w-7xl px-4 pt-24 pb-16">
+    <section className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 md:w-[60%] md:px-4 md:pt-24">
       <h1 className="font-mono text-sm font-medium text-foreground-secondary">
         Components
       </h1>

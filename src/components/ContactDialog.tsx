@@ -77,7 +77,7 @@ export const ContactDialog = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute left-1/2 top-[20%] w-full max-w-[480px] -translate-x-1/2 animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="absolute inset-x-4 top-[12%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:inset-x-auto sm:left-1/2 sm:top-[20%] sm:w-full sm:-translate-x-1/2">
         <div className="overflow-hidden rounded-lg border border-border-subtle bg-background/60 backdrop-blur-xl shadow-lg">
           <div className="border-b border-border-subtle px-3 py-2.5">
             <div className="flex items-center justify-between">

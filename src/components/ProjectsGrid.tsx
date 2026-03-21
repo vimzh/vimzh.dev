@@ -26,7 +26,7 @@ const ProjectsGrid = ({ projects }: { projects: Project[] }) => {
   return (
     <>
       {/* Filter tabs */}
-      <div className="mt-8 flex items-center gap-1">
+      <div className="mt-8 flex items-center gap-1 overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0">
         {filters.map(({ key, label }) => (
           <button
             key={key}

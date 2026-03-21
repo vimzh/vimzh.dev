@@ -28,14 +28,14 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="flex items-center gap-8 py-24 mx-auto w-[60%] max-w-7xl px-4">
+    <section className="flex flex-col items-start gap-6 py-16 mx-auto w-full max-w-7xl px-5 md:flex-row md:items-center md:gap-8 md:py-24 md:w-[60%] md:px-4">
       <div className="shrink-0">
         <Image
           src={site.profileImage}
           alt={`${site.name}, ${site.roles[0]}`}
           width={120}
           height={120}
-          className={`rounded-full ring-1 ring-border-subtle ring-offset-4 ring-offset-background transition-opacity duration-500 ease-out ${imgLoaded ? "opacity-100" : "opacity-0"}`}
+          className={`h-20 w-20 rounded-full ring-1 ring-border-subtle ring-offset-4 ring-offset-background transition-opacity duration-500 ease-out md:h-[120px] md:w-[120px] ${imgLoaded ? "opacity-100" : "opacity-0"}`}
           unoptimized
           onLoad={onImgLoad}
         />
@@ -45,18 +45,9 @@ export const HeroSection = () => {
           <span className="dark:hidden">#f7f4f0 #1a1612 #5c5549</span>
           <span className="hidden dark:inline">#111010 #ede9e4 #a8a19a</span>
         </p>
-        <div className="flex items-center gap-3">
-          <h1 className="font-mono text-3xl font-semibold tracking-tight leading-none">
-            Hey, I&apos;m <span className="text-primary">{site.name}</span>
-          </h1>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-2.5 py-1 text-[11px] text-foreground-secondary">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            </span>
-            {site.status}
-          </span>
-        </div>
+        <h1 className="font-mono text-2xl font-semibold tracking-tight leading-none md:text-3xl">
+          Hey, I&apos;m <span className="text-primary">{site.name}</span>
+        </h1>
         <WordRotate
           words={site.roles}
           className="text-sm text-foreground-secondary mt-1.5"
@@ -110,6 +101,13 @@ export const HeroSection = () => {
               </Tooltip>
             );
           })}
+        </div>
+        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-foreground-tertiary">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          </span>
+          {site.status}
         </div>
       </div>
     </section>

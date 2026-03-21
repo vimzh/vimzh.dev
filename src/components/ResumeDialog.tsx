@@ -33,7 +33,7 @@ export const ResumeDialog = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute left-1/2 top-[8%] w-full max-w-[560px] -translate-x-1/2 animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="absolute inset-x-4 top-[5%] mx-auto max-w-[560px] animate-in fade-in slide-in-from-top-2 duration-200 sm:inset-x-auto sm:left-1/2 sm:top-[8%] sm:w-full sm:-translate-x-1/2">
         <div className="overflow-hidden rounded-lg border border-border-subtle bg-background/60 backdrop-blur-xl shadow-lg">
           <div className="flex items-center justify-between border-b border-border-subtle px-3 py-2.5">
             <span className="text-[13px] font-medium text-foreground">

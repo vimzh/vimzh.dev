@@ -56,7 +56,7 @@ export const Navbar = () => {
       />
 
       <header className="pointer-events-auto relative z-10">
-        <div className="mx-auto flex h-11 w-[60%] max-w-7xl items-center justify-between px-4">
+        <div className="mx-auto flex h-11 w-full max-w-7xl items-center justify-between px-5 md:w-[60%] md:px-4">
           <Link
             href="/"
             className="font-mono text-[13px] font-semibold text-foreground"
@@ -65,7 +65,7 @@ export const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-0.5">
-            <nav className="flex items-center gap-0.5">
+            <nav className="hidden items-center gap-0.5 md:flex">
               {site.navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -80,14 +80,14 @@ export const Navbar = () => {
               ))}
             </nav>
 
-            <div className="mx-0.5 h-3.5 w-px bg-border-subtle" />
+            <div className="mx-0.5 hidden h-3.5 w-px bg-border-subtle md:block" />
 
             <button
               onClick={open}
               className="flex h-7 items-center gap-2 rounded-full border border-border-subtle bg-surface pl-2.5 pr-1.5 text-foreground-tertiary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:border-border hover:text-foreground-secondary"
             >
               <Search size={13} className="shrink-0" />
-              <span className="pointer-events-none flex items-center gap-px">
+              <span className="pointer-events-none hidden items-center gap-px sm:flex">
                 <kbd className="flex h-[18px] min-w-[18px] items-center justify-center rounded border border-border bg-muted px-1 font-mono text-[10px] font-medium text-foreground-tertiary">
                   &#8984;
                 </kbd>

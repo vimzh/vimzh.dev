@@ -19,7 +19,7 @@ export default async function BlogPage() {
   const posts = await getAllPosts();
 
   return (
-    <section className="mx-auto w-[60%] max-w-7xl px-4 pt-24 pb-16">
+    <section className="mx-auto w-full max-w-7xl px-5 pt-16 pb-16 md:w-[60%] md:px-4 md:pt-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -39,7 +39,7 @@ export default async function BlogPage() {
               i !== posts.length - 1 ? "border-b-border-subtle" : ""
             }`}
           >
-            <div className="flex items-baseline justify-between gap-4">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
               <h2 className="text-sm font-medium text-foreground group-hover:text-foreground transition-colors">
                 {post.title}
               </h2>

@@ -29,7 +29,7 @@ export default function Home() {
       <ExperienceSection />
       <Suspense
         fallback={
-          <section className="mx-auto w-[60%] max-w-7xl px-4 pb-24">
+          <section className="mx-auto w-full max-w-7xl px-5 pb-24 md:w-[60%] md:px-4">
             <h2 className="font-mono text-sm font-medium text-foreground-secondary">
               Contributions
             </h2>

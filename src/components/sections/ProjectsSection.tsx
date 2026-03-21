@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/lib/content";
 
 export const ProjectsSection = () => (
-  <section className="mx-auto w-[60%] max-w-7xl px-4 pb-16">
+  <section className="mx-auto w-full max-w-7xl px-5 pb-16 md:w-[60%] md:px-4">
     <Link
       href="/projects"
       className="group inline-flex w-fit items-center gap-1.5 transition-colors"

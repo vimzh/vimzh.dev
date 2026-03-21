@@ -154,7 +154,7 @@ export const CommandMenu = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute left-1/2 top-[20%] w-full max-w-[480px] -translate-x-1/2 animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="absolute inset-x-4 top-[12%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:inset-x-auto sm:left-1/2 sm:top-[20%] sm:w-full sm:-translate-x-1/2">
         <div className="overflow-hidden rounded-lg border border-border-subtle bg-background backdrop-blur-xl shadow-lg">
           <div className="flex items-center gap-2 border-b border-border-subtle px-3">
             <Search size={16} className="shrink-0 text-foreground-tertiary" />
