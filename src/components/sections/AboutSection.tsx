@@ -15,7 +15,7 @@ export const AboutSection = () => {
         {site.about}{" "}
         <button
           onClick={open}
-          className="inline text-foreground underline decoration-border-subtle underline-offset-2 transition-colors hover:decoration-foreground-tertiary"
+          className="inline appearance-none border-none bg-transparent p-0 text-foreground underline decoration-border-subtle underline-offset-2 transition-colors hover:decoration-foreground-tertiary cursor-pointer"
         >
           let&apos;s talk
         </button>
