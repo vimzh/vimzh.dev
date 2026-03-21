@@ -74,6 +74,9 @@ export const metadata: Metadata = {
     description: site.description,
     creator: site.twitterHandle,
   },
+  verification: {
+    google: "xXWQ-aNWmuO7kglRRSgjkAoy_5npCJ1lo_orAAEMKVI",
+  },
   robots: {
     index: true,
     follow: true,
