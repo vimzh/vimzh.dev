@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Projects by vimzh — full-stack apps, landing pages, developer tools, and open source work.",
+    "Projects by vimzh. Full-stack apps, landing pages, developer tools, and open source work.",
   alternates: {
     canonical: "/projects",
   },

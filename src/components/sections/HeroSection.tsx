@@ -29,7 +29,7 @@ export const HeroSection = () => {
       <div className="shrink-0">
         <Image
           src={site.profileImage}
-          alt={`${site.name} — ${site.roles[0]}`}
+          alt={`${site.name}, ${site.roles[0]}`}
           width={120}
           height={120}
           className="rounded-full ring-1 ring-border-subtle ring-offset-4 ring-offset-background"

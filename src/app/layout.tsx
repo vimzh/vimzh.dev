@@ -54,8 +54,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} (${site.siteName}) — ${site.roles[0]}`,
-    template: `%s — ${site.siteName}`,
+    default: `${site.name} | ${site.roles[0]}`,
+    template: `%s | ${site.siteName}`,
   },
   description: site.description,
   metadataBase: new URL(site.url),
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${site.name} — ${site.roles.slice(0, 2).join(", ")}`,
+    title: `${site.name} | ${site.roles.slice(0, 2).join(", ")}`,
     description: site.description,
     url: site.url,
     siteName: site.siteName,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.roles[0]}`,
+    title: `${site.name} | ${site.roles[0]}`,
     description: site.description,
     creator: site.twitterHandle,
   },
