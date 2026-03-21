@@ -84,7 +84,7 @@ export default async function BlogPostPage({
             })}
           </p>
         </header>
-        <div className="prose prose-sm prose-neutral dark:prose-invert max-w-none [&>h2]:font-mono [&>h2]:text-base [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-3 [&>h3]:font-mono [&>h3]:text-sm [&>h3]:font-medium [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-foreground-secondary [&>ul]:text-sm [&>ul]:text-foreground-secondary [&>ol]:text-sm [&>ol]:text-foreground-secondary [&>pre]:bg-surface [&>pre]:border [&>pre]:border-border-subtle [&>pre]:text-xs [&_code]:text-xs [&_code]:font-mono [&>blockquote]:border-border-subtle [&>blockquote]:text-foreground-secondary [&_a]:text-foreground [&_a]:underline [&_a]:decoration-border-subtle [&_a]:underline-offset-2 hover:[&_a]:decoration-foreground-tertiary [&_strong]:text-foreground">
+        <div className="prose prose-sm prose-neutral dark:prose-invert max-w-none [&>h2]:font-mono [&>h2]:text-base [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-3 [&>h3]:font-mono [&>h3]:text-sm [&>h3]:font-medium [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-foreground-secondary [&>ul]:text-sm [&>ul]:text-foreground-secondary [&>ol]:text-sm [&>ol]:text-foreground-secondary [&>blockquote]:border-border-subtle [&>blockquote]:text-foreground-secondary [&_a]:text-foreground [&_a]:underline [&_a]:decoration-border-subtle [&_a]:underline-offset-2 hover:[&_a]:decoration-foreground-tertiary [&_strong]:text-foreground prose-pre:bg-transparent prose-pre:border-0 prose-pre:p-0 prose-pre:m-0">
           <Post />
         </div>
       </article>
