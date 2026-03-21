@@ -72,6 +72,7 @@ export type Project = {
   name: string;
   description: string;
   tags: string[];
+  category: "fullstack" | "landing-page";
   url?: string;
   github?: string;
   wip?: boolean;

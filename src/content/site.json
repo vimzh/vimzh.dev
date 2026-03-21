@@ -38,7 +38,7 @@
     }
   ],
   "navLinks": [
-    { "label": "Projects", "href": "/", "key": "p" },
+    { "label": "Projects", "href": "/projects", "key": "p" },
     { "label": "Components", "href": "/components", "key": "c" },
     { "label": "Blog", "href": "/blog", "key": "b" }
   ],
@@ -53,10 +53,10 @@
       },
       {
         "id": "portfolio",
-        "label": "Portfolio",
-        "href": "/",
+        "label": "Projects",
+        "href": "/projects",
         "icon": "layout-grid",
-        "keywords": ["work", "projects", "showcase"]
+        "keywords": ["work", "projects", "showcase", "portfolio"]
       },
       {
         "id": "components",
