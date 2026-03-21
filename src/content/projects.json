@@ -3,9 +3,10 @@
     "name": "Kairoi",
     "description": "AI-powered calendar that learns your energy patterns and auto-blocks deep work sessions",
     "tags": ["Next.js", "TypeScript", "OpenAI", "Drizzle"],
-    "category": "fullstack",
+    "category": "ai",
     "url": "https://kairoi.app",
-    "github": "https://github.com/vimzh/kairoi"
+    "github": "https://github.com/vimzh/kairoi",
+    "gradient": ["#1a1a2e", "#16213e"]
   },
   {
     "name": "Patchwork",
@@ -13,14 +14,16 @@
     "tags": ["Next.js", "MDX", "Vercel OG", "Drizzle"],
     "category": "fullstack",
     "github": "https://github.com/vimzh/patchwork",
-    "wip": true
+    "wip": true,
+    "gradient": ["#2d1b30", "#1a1225"]
   },
   {
     "name": "CloudSync",
     "description": "Real-time file synchronization engine with conflict resolution, built for distributed teams",
     "tags": ["Go", "gRPC", "Redis", "S3"],
     "category": "fullstack",
-    "github": "https://github.com/vimzh/cloudsync"
+    "github": "https://github.com/vimzh/cloudsync",
+    "gradient": ["#0f2027", "#203a43"]
   },
   {
     "name": "Lattice",
@@ -28,21 +31,24 @@
     "tags": ["Go", "Redis", "React", "Docker"],
     "category": "fullstack",
     "github": "https://github.com/vimzh/lattice",
-    "url": "https://lattice.run"
+    "url": "https://lattice.run",
+    "gradient": ["#1a1a1a", "#2d2d2d"]
   },
   {
     "name": "Terma",
     "description": "Minimal terminal emulator with GPU-accelerated rendering and custom shader backgrounds",
     "tags": ["Rust", "WebGPU", "WASM"],
     "category": "fullstack",
-    "wip": true
+    "wip": true,
+    "gradient": ["#0d1117", "#161b22"]
   },
   {
     "name": "Spectra",
     "description": "Design token pipeline that extracts color palettes from images and generates theme files for Tailwind, CSS, and Figma",
     "tags": ["TypeScript", "Node.js", "Sharp", "CLI"],
-    "category": "landing-page",
+    "category": "frontend",
     "github": "https://github.com/vimzh/spectra",
-    "url": "https://spectra.dev"
+    "url": "https://spectra.dev",
+    "gradient": ["#1e1e2e", "#302b42"]
   }
 ]

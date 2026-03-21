@@ -68,14 +68,18 @@ export type OpenSourceContribution = {
   npm?: string;
 };
 
+export type ProjectCategory = "fullstack" | "ai" | "frontend";
+
 export type Project = {
   name: string;
   description: string;
   tags: string[];
-  category: "fullstack" | "landing-page";
+  category: ProjectCategory;
   url?: string;
   github?: string;
   wip?: boolean;
+  preview?: string;
+  gradient: [string, string];
 };
 
 export type ComponentItem = {
