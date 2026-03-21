@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# vimzh.dev
 
-## Getting Started
+A minimal, fast developer portfolio built with Next.js 16, Tailwind CSS 4, and MDX. Everything is config-driven — just edit a few JSON files and you're live.
 
-First, run the development server:
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# clone it
+git clone https://github.com/vimzh/vimzh.dev.git
+cd vimzh.dev
+
+# install deps
+bun install
+
+# set up env vars
+cp .env.example .env.local
+
+# run it
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+That's it. Open [localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Make It Yours
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All your content lives in `src/content/`. No databases, no CMS, no config rabbit holes — just JSON files.
 
-## Learn More
+### 1. Edit your info
 
-To learn more about Next.js, take a look at the following resources:
+Open `src/content/site.json` and replace everything with your own details:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+{
+  "name": "yourname",
+  "siteName": "yourname.dev",
+  "url": "https://yourname.dev",
+  "email": "you@example.com",
+  "description": "Your one-liner",
+  "roles": ["Software Engineer", "Designer", "Whatever You Do"],
+  "about": "A paragraph about you...",
+  "socials": [
+    { "icon": "github", "href": "https://github.com/you", "label": "GitHub" }
+  ]
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Drop your profile picture in `public/` and update `profileImage`. Same for your resume PDF.
 
-## Deploy on Vercel
+### 2. Add your projects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Edit `src/content/projects.json`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+[
+  {
+    "name": "Cool Project",
+    "description": "What it does",
+    "tags": ["Next.js", "TypeScript"],
+    "url": "https://coolproject.com",
+    "github": "https://github.com/you/cool-project"
+  }
+]
+```
+
+### 3. Add your experience
+
+Edit `src/content/experiences.json`:
+
+```json
+[
+  {
+    "company": "Acme Inc",
+    "role": "Senior Engineer",
+    "period": "Jan 2024 — Present",
+    "location": "Remote",
+    "tags": ["React", "Node.js"]
+  }
+]
+```
+
+### 4. Write blog posts
+
+Drop an `.mdx` file in `src/content/blog/`:
+
+```mdx
+export const meta = {
+  title: "My First Post",
+  excerpt: "What this post is about",
+  date: "2026-01-15",
+  tags: ["React", "TypeScript"],
+};
+
+# My First Post
+
+Write your content here. Supports GitHub-flavored markdown.
+```
+
+It shows up automatically. No routing config, no frontmatter parsing setup — just write and save.
+
+## Environment Variables
+
+Create a `.env.local` with:
+
+```
+GITHUB_TOKEN=         # GitHub personal access token (for contributions graph)
+RESEND_API_KEY=       # Resend API key (for contact form)
+CONTACT_EMAIL=        # Where contact form emails go
+```
+
+The GitHub token needs `read:user` scope. Get one at [github.com/settings/tokens](https://github.com/settings/tokens).
+
+Sign up for [Resend](https://resend.com) for the contact form (free tier is plenty).
+
+## Theming
+
+Light and dark mode work out of the box. Colors are CSS variables in `src/app/globals.css` — tweak them to match your vibe. The warm cream/dark palette is the default, but you can swap it to whatever you want.
+
+Theme colors for the browser chrome are in `site.json` under `themeColors`.
+
+## Deploy
+
+Push to GitHub and connect to [Vercel](https://vercel.com). Add your env vars in the Vercel dashboard. Done.
+
+```bash
+bun run build  # make sure it builds clean
+```
+
+## Stack
+
+- **Framework**: Next.js 16 (App Router, React 19)
+- **Styling**: Tailwind CSS 4
+- **UI**: Base UI + shadcn/ui
+- **Blog**: MDX with remark-gfm
+- **Animations**: Motion
+- **Analytics**: Vercel Analytics
+- **Email**: Resend
+- **Package Manager**: Bun
+
+## Structure
+
+```
+src/
+├── app/           # pages and layouts
+├── components/    # UI components
+├── content/       # your content (JSON + MDX)
+│   ├── site.json
+│   ├── projects.json
+│   ├── experiences.json
+│   ├── opensource.json
+│   ├── components.json
+│   └── blog/      # MDX blog posts
+├── lib/           # utilities
+└── stores/        # state (Zustand)
+```
+
+## License
+
+MIT — use it, fork it, make it yours.
