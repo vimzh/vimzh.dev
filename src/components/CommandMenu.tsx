@@ -149,7 +149,7 @@ export const CommandMenu = () => {
   return (
     <div className="fixed inset-0 z-[100]">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150"
+        className="absolute inset-0 bg-black/20 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-150"
         onClick={close}
         aria-hidden="true"
       />
