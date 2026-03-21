@@ -27,7 +27,7 @@ export const ProjectsSection = () => (
 
     <Link
       href="/projects"
-      className="mt-6 inline-flex items-center gap-1.5 text-xs text-foreground-tertiary transition-colors hover:text-foreground-secondary"
+      className="mt-6 inline-flex w-fit items-center gap-1.5 text-xs text-foreground-tertiary transition-colors hover:text-foreground-secondary"
     >
       View all projects
       <ArrowRight size={12} />

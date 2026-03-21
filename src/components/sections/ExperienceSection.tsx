@@ -57,7 +57,7 @@ export const ExperienceSection = () => (
 
     <Link
       href="/experience"
-      className="mt-4 inline-flex items-center gap-1.5 text-xs text-foreground-tertiary transition-colors hover:text-foreground-secondary"
+      className="mt-4 inline-flex w-fit items-center gap-1.5 text-xs text-foreground-tertiary transition-colors hover:text-foreground-secondary"
     >
       Details
       <ArrowRight size={12} />
