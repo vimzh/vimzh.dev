@@ -1,9 +1,19 @@
 "use client";
 
+import {
+  Briefcase,
+  Box,
+  Folder,
+  Home,
+  LayoutGrid,
+  Mail,
+  Newspaper,
+  Search,
+  User,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Icons } from "@/components/Icons";
 import { useCommandMenu } from "@/stores/commandMenu";
 
 interface CommandItem {
@@ -21,7 +31,7 @@ const navigationItems: CommandItem[] = [
     label: "Home",
     section: "Navigation",
     href: "/",
-    icon: <Icons.home />,
+    icon: <Home size={16} />,
     keywords: ["index", "landing"],
   },
   {
@@ -29,7 +39,7 @@ const navigationItems: CommandItem[] = [
     label: "Portfolio",
     section: "Navigation",
     href: "/",
-    icon: <Icons.grid />,
+    icon: <LayoutGrid size={16} />,
     keywords: ["work", "projects", "showcase"],
   },
   {
@@ -37,7 +47,7 @@ const navigationItems: CommandItem[] = [
     label: "Components",
     section: "Navigation",
     href: "/components",
-    icon: <Icons.box />,
+    icon: <Box size={16} />,
     keywords: ["ui", "design", "library"],
   },
   {
@@ -45,7 +55,7 @@ const navigationItems: CommandItem[] = [
     label: "Blog",
     section: "Navigation",
     href: "/blog",
-    icon: <Icons.newspaper />,
+    icon: <Newspaper size={16} />,
     keywords: ["posts", "articles", "writing"],
   },
 ];
@@ -56,7 +66,7 @@ const sectionItems: CommandItem[] = [
     label: "About",
     section: "Sections",
     href: "/#about",
-    icon: <Icons.user />,
+    icon: <User size={16} />,
     keywords: ["me", "bio", "introduction"],
   },
   {
@@ -64,7 +74,7 @@ const sectionItems: CommandItem[] = [
     label: "Experience",
     section: "Sections",
     href: "/#experience",
-    icon: <Icons.briefcase />,
+    icon: <Briefcase size={16} />,
     keywords: ["work", "career", "jobs"],
   },
   {
@@ -72,7 +82,7 @@ const sectionItems: CommandItem[] = [
     label: "Projects",
     section: "Sections",
     href: "/#projects",
-    icon: <Icons.folder />,
+    icon: <Folder size={16} />,
     keywords: ["repos", "showcase"],
   },
   {
@@ -80,7 +90,7 @@ const sectionItems: CommandItem[] = [
     label: "Contact",
     section: "Sections",
     href: "/#contact",
-    icon: <Icons.mail />,
+    icon: <Mail size={16} />,
     keywords: ["email", "reach", "connect"],
   },
 ];
@@ -197,9 +207,9 @@ export const CommandMenu = () => {
       />
 
       <div className="absolute left-1/2 top-[20%] w-full max-w-[480px] -translate-x-1/2 animate-in fade-in slide-in-from-top-2 duration-200">
-        <div className="overflow-hidden rounded-lg border border-border bg-surface shadow-lg">
+        <div className="overflow-hidden rounded-lg border border-border-subtle bg-background/60 backdrop-blur-xl shadow-lg">
           <div className="flex items-center gap-2 border-b border-border-subtle px-3">
-            <Icons.search className="shrink-0 text-foreground-tertiary" />
+            <Search size={16} className="shrink-0 text-foreground-tertiary" />
             <input
               ref={inputRef}
               type="text"
@@ -244,7 +254,7 @@ export const CommandMenu = () => {
                         }`}
                       >
                         <span
-                          className={`shrink-0 ${isActive ? "text-accent" : "text-foreground-tertiary"}`}
+                          className={`shrink-0 ${isActive ? "text-foreground" : "text-foreground-tertiary"}`}
                         >
                           {item.icon}
                         </span>

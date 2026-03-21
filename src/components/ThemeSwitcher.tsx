@@ -1,9 +1,8 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useRef, useState } from "react";
-
-import { Icons } from "@/components/Icons";
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
@@ -41,7 +40,7 @@ export const ThemeSwitcher = () => {
       className="flex h-7 w-7 items-center justify-center rounded-md text-foreground-secondary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground hover:bg-muted"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
-      {theme === "dark" ? <Icons.sun /> : <Icons.moon />}
+      {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
     </button>
   );
 };

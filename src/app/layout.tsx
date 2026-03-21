@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { Manrope, Geist_Mono, Geist } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 
+import { BottomBlur } from "@/components/BottomBlur";
 import { CommandMenu } from "@/components/CommandMenu";
+import { ContactDialog } from "@/components/ContactDialog";
+import { Footer } from "@/components/Footer";
 import { DotGrid } from "@/components/DotGrid";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
-import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,15 +32,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", manrope.variable, geistMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "h-full antialiased",
+        geistMono.variable,
+        "font-mono",
+      )}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <DotGrid />
-          <Navbar />
-          <CommandMenu />
-          <main className="relative z-10 flex-1">{children}</main>
+          <TooltipProvider>
+            <DotGrid />
+            <Navbar />
+            <CommandMenu />
+            <ContactDialog />
+            <main className="relative z-10 flex-1">{children}</main>
+            <Footer />
+            <BottomBlur />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
