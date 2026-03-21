@@ -13,11 +13,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const hasPreview = !!project.preview;
 
   return (
-    <div className="group/card flex flex-col rounded-lg border border-border-subtle p-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:border-border-strong hover:bg-background hover:shadow-md">
+    <div className="group/card flex flex-col rounded-lg border border-border-subtle pt-2.5 px-2.5 pb-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:border-border-strong hover:bg-background hover:shadow-md">
       {/* Preview area */}
       <div
         className={cn(
-          "relative flex h-44 items-center justify-center overflow-hidden rounded-md border border-border-subtle",
+          "relative flex h-48 items-center justify-center overflow-hidden rounded-md border border-border-subtle",
           !hasPreview && project.previewBg,
         )}
       >
@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Info */}
-      <div className="mt-3 flex items-start justify-between gap-2">
+      <div className="mt-3 flex items-start justify-between gap-2 px-1.5">
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-foreground">
             {project.name}
@@ -74,11 +74,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
       </div>
 
-      <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+      <p className="mt-1 px-1.5 text-sm leading-relaxed text-foreground-secondary">
         {project.description}
       </p>
 
-      <div className="mt-3 flex flex-wrap gap-1.5">
+      <div className="mt-3 flex flex-wrap gap-1.5 px-1.5">
         {project.tags.map((tag) => (
           <Badge
             key={tag}
