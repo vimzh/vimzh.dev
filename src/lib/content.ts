@@ -68,7 +68,7 @@ export type OpenSourceContribution = {
   npm?: string;
 };
 
-export type ProjectCategory = "fullstack" | "ai" | "frontend";
+export type ProjectCategory = "fullstack" | "ai" | "frontend" | "apps";
 
 export type Project = {
   name: string;

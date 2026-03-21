@@ -11,6 +11,7 @@ const filters: { key: ProjectCategory | "all"; label: string }[] = [
   { key: "all", label: "All" },
   { key: "fullstack", label: "Full-Stack" },
   { key: "ai", label: "AI" },
+  { key: "apps", label: "Apps" },
   { key: "frontend", label: "Frontend" },
 ];
 
