@@ -57,28 +57,25 @@ export const ThemeSwitcher = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }, [resolvedTheme, setTheme, playSound]);
 
-  if (!mounted) {
-    return (
-      <button
-        className="flex h-7 w-7 items-center justify-center rounded-md text-foreground-secondary"
-        aria-label="Toggle theme"
-      >
-        <span className="h-4 w-4" />
-      </button>
-    );
-  }
-
   return (
     <button
-      onClick={handleToggle}
+      onClick={mounted ? handleToggle : undefined}
       className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-foreground-secondary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground hover:bg-muted"
-      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+      aria-label={
+        mounted
+          ? `Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`
+          : "Toggle theme"
+      }
     >
-      {resolvedTheme === "dark" ? (
-        <Sun size={16} className="shrink-0" />
-      ) : (
-        <Moon size={16} className="shrink-0" />
-      )}
+      <span
+        className={`transition-opacity duration-300 ease-out ${mounted ? "opacity-100" : "opacity-0"}`}
+      >
+        {resolvedTheme === "dark" ? (
+          <Sun size={16} className="shrink-0" />
+        ) : (
+          <Moon size={16} className="shrink-0" />
+        )}
+      </span>
     </button>
   );
 };

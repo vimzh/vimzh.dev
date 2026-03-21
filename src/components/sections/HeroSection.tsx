@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { Check, Copy, FileText } from "lucide-react";
 import Image from "next/image";
@@ -16,7 +16,10 @@ import { useResumeDialog } from "@/stores/resumeDialog";
 
 export const HeroSection = () => {
   const [copied, setCopied] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const { open: openResume } = useResumeDialog();
+
+  const onImgLoad = useCallback(() => setImgLoaded(true), []);
 
   const copyEmail = () => {
     navigator.clipboard.writeText(site.email);
@@ -32,8 +35,9 @@ export const HeroSection = () => {
           alt={`${site.name}, ${site.roles[0]}`}
           width={120}
           height={120}
-          className="rounded-full ring-1 ring-border-subtle ring-offset-4 ring-offset-background"
+          className={`rounded-full ring-1 ring-border-subtle ring-offset-4 ring-offset-background transition-opacity duration-500 ease-out ${imgLoaded ? "opacity-100" : "opacity-0"}`}
           unoptimized
+          onLoad={onImgLoad}
         />
       </div>
       <div>
