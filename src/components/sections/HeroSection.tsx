@@ -41,7 +41,7 @@ export const HeroSection = () => {
         />
       </div>
       <div>
-        <p className="font-mono text-[10px] tracking-wide text-foreground-tertiary/40 mb-2 select-none">
+        <p className="font-mono text-[10px] tracking-wide text-foreground-tertiary/70 mb-2 select-none">
           <span className="dark:hidden">#f7f4f0 #1a1612 #5c5549</span>
           <span className="hidden dark:inline">#111010 #ede9e4 #a8a19a</span>
         </p>
