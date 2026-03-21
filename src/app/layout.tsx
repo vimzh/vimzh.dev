@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 
+import { BotanicalVines } from "@/components/BotanicalVines";
 import { BottomBlur } from "@/components/BottomBlur";
 import { CommandMenu } from "@/components/CommandMenu";
 import { ContactDialog } from "@/components/ContactDialog";
+import { ResumeDialog } from "@/components/ResumeDialog";
 import { Footer } from "@/components/Footer";
 import { DotGrid } from "@/components/DotGrid";
 import { Navbar } from "@/components/Navbar";
@@ -20,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal portfolio",
+  title: "vimzh.dev",
+  description: "Full-stack AI developer, open source contributor",
 };
 
 export default function RootLayout({
@@ -43,9 +45,11 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
             <DotGrid />
+            <BotanicalVines />
             <Navbar />
             <CommandMenu />
             <ContactDialog />
+            <ResumeDialog />
             <main className="relative z-10 flex-1">{children}</main>
             <Footer />
             <BottomBlur />

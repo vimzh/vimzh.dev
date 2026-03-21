@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, FileText } from "lucide-react";
 import Image from "next/image";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import {
@@ -11,9 +11,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { EMAIL, socials } from "@/data/site";
+import { useResumeDialog } from "@/stores/resumeDialog";
 
 export const HeroSection = () => {
   const [copied, setCopied] = useState(false);
+  const { open: openResume } = useResumeDialog();
 
   const copyEmail = () => {
     navigator.clipboard.writeText(EMAIL);
@@ -67,6 +69,14 @@ export const HeroSection = () => {
           </button>
         </div>
         <div className="mt-3 flex items-center gap-1">
+          <button
+            onClick={openResume}
+            className="mr-1 inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-2.5 py-1 text-[11px] font-medium text-foreground-secondary transition-colors hover:border-border hover:text-foreground"
+          >
+            <FileText size={12} />
+            Resume
+          </button>
+          <span className="mr-1 h-3.5 w-px bg-border-subtle" />
           {socials.map((social) => (
             <Tooltip key={social.label}>
               <TooltipTrigger
