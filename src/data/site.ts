@@ -106,6 +106,30 @@ export const projects: Project[] = [
     tags: ["Rust", "WebGPU", "WASM"],
     wip: true,
   },
+  {
+    name: "Spectra",
+    description:
+      "Design token pipeline that extracts color palettes from images and generates theme files for Tailwind, CSS, and Figma",
+    tags: ["TypeScript", "Node.js", "Sharp", "CLI"],
+    github: "https://github.com/vimzh/spectra",
+    url: "https://spectra.dev",
+  },
+  {
+    name: "Patchwork",
+    description:
+      "Git-based CMS for markdown content with live preview, branch-per-draft workflow, and automatic OG image generation",
+    tags: ["Next.js", "MDX", "Vercel OG", "Drizzle"],
+    github: "https://github.com/vimzh/patchwork",
+    wip: true,
+  },
+  {
+    name: "Lattice",
+    description:
+      "Lightweight task queue with Redis-backed scheduling, retry policies, and a minimal dashboard for monitoring jobs",
+    tags: ["Go", "Redis", "React", "Docker"],
+    github: "https://github.com/vimzh/lattice",
+    url: "https://lattice.run",
+  },
 ];
 
 export const experiences: Experience[] = [

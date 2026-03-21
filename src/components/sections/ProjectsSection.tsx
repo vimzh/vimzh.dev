@@ -20,7 +20,7 @@ export const ProjectsSection = () => (
     </Link>
 
     <div className="mt-3 flex flex-col gap-1">
-      {projects.map((project) => (
+      {projects.slice(0, 3).map((project) => (
         <div
           key={project.name}
           className="group/card relative flex items-start justify-between gap-4 rounded-lg border border-transparent px-3 py-3 -mx-3 transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:border-border-subtle hover:bg-background hover:shadow-md"
