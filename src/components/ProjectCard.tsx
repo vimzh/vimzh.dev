@@ -13,7 +13,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const hasPreview = !!project.preview;
 
   return (
-    <div className="group/card flex flex-col rounded-lg border border-border-subtle pt-2.5 px-2.5 pb-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:border-border-strong hover:bg-background hover:shadow-md">
+    <div className="group/card flex flex-col rounded-lg border border-border-subtle bg-surface pt-2.5 px-2.5 pb-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] hover:border-border-strong hover:shadow-md">
       {/* Preview area */}
       <div
         className={cn(
