@@ -27,7 +27,7 @@ export const CodeBlock = async ({
   return (
     <div className="group/code relative my-5">
       <div
-        className="overflow-x-auto rounded-lg border border-border-subtle bg-surface text-[13px] leading-6 font-mono [&_pre]:overflow-x-auto [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:bg-transparent! [&_code]:grid [&_.line]:border-l-2 [&_.line]:border-transparent [&_.line]:pl-3"
+        className="overflow-x-auto rounded-lg border border-border-subtle bg-surface text-[13px] leading-6 font-[family-name:var(--font-code)] [&_pre]:overflow-x-auto [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:bg-transparent! [&_code]:grid [&_.line]:border-l-2 [&_.line]:border-transparent [&_.line]:pl-3"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <CopyButton code={code} />

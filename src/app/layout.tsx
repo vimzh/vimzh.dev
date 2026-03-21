@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, JetBrains_Mono } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/next";
 
@@ -41,6 +41,13 @@ const geistMono = Geist_Mono({
   variable: "--font-mono",
   display: "swap",
   weight: ["200", "400", "500", "600"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-code",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const viewport: Viewport = {
@@ -100,7 +107,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full antialiased", geistMono.variable, "font-mono")}
+      className={cn("h-full antialiased", geistMono.variable, jetbrainsMono.variable, "font-mono")}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

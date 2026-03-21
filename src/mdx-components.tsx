@@ -18,7 +18,7 @@ export function useMDXComponents(): MDXComponents {
       return (
         <code
           {...props}
-          className="rounded-md border border-border-subtle bg-surface px-1.5 py-0.5 text-xs font-mono text-foreground"
+          className="rounded-md border border-border-subtle bg-surface px-1.5 py-0.5 text-xs font-[family-name:var(--font-code)] text-foreground"
         >
           {children}
         </code>
