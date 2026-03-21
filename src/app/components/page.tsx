@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { components } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 import type { Metadata } from "next";
 
@@ -25,44 +26,53 @@ export default function ComponentsPage() {
         Reusable UI primitives built with React, Tailwind, and Base UI.
       </p>
 
-      <div className="mt-10 flex flex-col">
-        {components.map((component, i) => (
-          <Link
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {components.map((component) => (
+          <div
             key={component.name}
-            href={component.href}
-            className="group/row relative flex items-start justify-between gap-6 border-t border-border-subtle py-5 -mx-3 px-3 rounded-lg transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:bg-background hover:border-transparent hover:shadow-md"
+            className="group/card flex flex-col rounded-lg border border-transparent p-4 transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:border-border-subtle hover:bg-background hover:shadow-md"
           >
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] tabular-nums text-foreground-tertiary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-sm font-medium text-foreground">
-                  {component.name}
-                </span>
-              </div>
-              <p className="mt-1.5 pl-8 text-sm leading-relaxed text-foreground-secondary">
-                {component.description}
-              </p>
-              <div className="mt-2.5 flex flex-wrap gap-1.5 pl-8">
-                {component.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="outline"
-                    className="h-[18px] rounded-sm px-1.5 text-[10px] font-normal text-foreground-tertiary"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
+            <div
+              className={cn(
+                "flex h-28 items-center justify-center rounded-md border border-border-subtle",
+                component.previewBg,
+              )}
+            >
+              <span className="text-xs text-foreground-tertiary select-none">
+                {component.name}
+              </span>
             </div>
 
-            <div className="shrink-0 pt-0.5 text-foreground-tertiary opacity-0 transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-out)] group-hover/row:opacity-100">
-              <ArrowUpRight size={14} />
+            <div className="mt-3 flex items-start justify-between gap-2">
+              <span className="text-sm font-medium text-foreground">
+                {component.name}
+              </span>
+              <Link
+                href={component.href}
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded text-foreground-tertiary transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:text-foreground"
+                aria-label={`View ${component.name}`}
+              >
+                <ArrowUpRight size={14} />
+              </Link>
             </div>
-          </Link>
+
+            <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+              {component.description}
+            </p>
+
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {component.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="h-[18px] rounded-sm px-1.5 text-[10px] font-normal text-foreground-tertiary"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
         ))}
-        <div className="border-t border-border-subtle" />
       </div>
     </section>
   );
