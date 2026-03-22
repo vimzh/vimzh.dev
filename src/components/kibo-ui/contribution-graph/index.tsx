@@ -19,7 +19,9 @@ import {
   type HTMLAttributes,
   type ReactNode,
   useContext,
+  useEffect,
   useMemo,
+  useState,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -375,16 +377,29 @@ export const ContributionGraphCalendar = ({
   const { weeks, width, height, blockSize, blockMargin, labels, mobileWeeks } =
     useContributionGraph();
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   const monthLabels = useMemo(
     () => getMonthLabels(weeks, labels.months),
     [weeks, labels.months],
   );
 
-  // Calculate the starting week index for mobile view
-  // Show only the last N weeks on mobile
-  const mobileStartWeekIndex = mobileWeeks
-    ? Math.max(0, weeks.length - mobileWeeks)
-    : 0;
+  // On mobile, crop the viewBox to only show the last N weeks
+  const mobileStartWeek =
+    isMobile && mobileWeeks
+      ? Math.max(0, weeks.length - mobileWeeks)
+      : 0;
+
+  const viewBoxX = (blockSize + blockMargin) * mobileStartWeek;
+  const displayWidth = width - viewBoxX;
 
   return (
     <div
@@ -394,26 +409,23 @@ export const ContributionGraphCalendar = ({
       <svg
         className="block overflow-visible"
         height={height}
-        viewBox={`0 0 ${width} ${height}`}
-        width={width}
+        viewBox={`${viewBoxX} 0 ${displayWidth} ${height}`}
+        width={displayWidth}
       >
         <title>Contribution Graph</title>
         {!hideMonthLabels && (
           <g className="fill-current">
-            {monthLabels.map(({ label, weekIndex }) => (
-              <text
-                dominantBaseline="hanging"
-                key={weekIndex}
-                x={(blockSize + blockMargin) * weekIndex}
-                className={
-                  mobileWeeks && weekIndex < mobileStartWeekIndex
-                    ? "hidden sm:block"
-                    : undefined
-                }
-              >
-                {label}
-              </text>
-            ))}
+            {monthLabels
+              .filter(({ weekIndex }) => weekIndex >= mobileStartWeek)
+              .map(({ label, weekIndex }) => (
+                <text
+                  dominantBaseline="hanging"
+                  key={weekIndex}
+                  x={(blockSize + blockMargin) * weekIndex}
+                >
+                  {label}
+                </text>
+              ))}
           </g>
         )}
         {weeks.map((week, weekIndex) =>
@@ -422,14 +434,14 @@ export const ContributionGraphCalendar = ({
               return null;
             }
 
-            // Hide older weeks on mobile when mobileWeeks is set
-            const isHiddenOnMobile = mobileWeeks && weekIndex < mobileStartWeekIndex;
+            // Skip rendering blocks outside the visible range
+            if (weekIndex < mobileStartWeek) {
+              return null;
+            }
 
             return (
               <Fragment key={`${weekIndex}-${dayIndex}`}>
-                <g className={isHiddenOnMobile ? "hidden sm:block" : undefined}>
-                  {children({ activity, dayIndex, weekIndex })}
-                </g>
+                {children({ activity, dayIndex, weekIndex })}
               </Fragment>
             );
           }),
