@@ -9,10 +9,10 @@ import type { Project, ProjectCategory } from "@/lib/content";
 
 const filters: { key: ProjectCategory | "all"; label: string }[] = [
   { key: "all", label: "All" },
-  { key: "fullstack", label: "Full-Stack" },
+  { key: "fullstack", label: "Web" },
   { key: "ai", label: "AI" },
   { key: "apps", label: "Apps" },
-  { key: "frontend", label: "Frontend" },
+  { key: "frontend", label: "Landing Pages" },
 ];
 
 const ProjectsGrid = ({ projects }: { projects: Project[] }) => {
