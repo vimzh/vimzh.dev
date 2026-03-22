@@ -154,7 +154,7 @@ export const CommandMenu = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute inset-x-4 top-[12%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:inset-x-auto sm:left-1/2 sm:top-[20%] sm:w-full sm:-translate-x-1/2">
+      <div className="absolute inset-x-4 top-[8%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:top-[12%] sm:inset-x-auto sm:left-1/2 sm:top-[20%] sm:w-full sm:-translate-x-1/2">
         <div className="overflow-hidden rounded-lg border border-border-subtle bg-background backdrop-blur-xl shadow-lg">
           <div className="flex items-center gap-2 border-b border-border-subtle px-3">
             <Search size={16} className="shrink-0 text-foreground-tertiary" />
@@ -164,16 +164,19 @@ export const CommandMenu = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Type a command or search..."
-              className="flex-1 bg-transparent py-2.5 text-[13px] text-foreground outline-none placeholder:text-foreground-tertiary"
+              className="flex-1 bg-transparent py-3 text-sm text-foreground outline-none placeholder:text-foreground-tertiary sm:py-2.5 sm:text-[13px]"
             />
-            <kbd className="pointer-events-none flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-tertiary">
+            <button
+              onClick={close}
+              className="flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-tertiary sm:pointer-events-none"
+            >
               ESC
-            </kbd>
+            </button>
           </div>
 
           <div
             ref={listRef}
-            className="max-h-[280px] overflow-y-auto overscroll-contain p-1.5"
+            className="max-h-[50vh] overflow-y-auto overscroll-contain p-1.5 sm:max-h-[280px]"
           >
             {filtered.length === 0 ? (
               <div className="py-8 text-center text-sm text-foreground-tertiary">
@@ -195,7 +198,7 @@ export const CommandMenu = () => {
                         data-active={isActive}
                         onClick={() => navigate(item)}
                         onMouseEnter={() => setActiveIndex(currentIndex)}
-                        className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-left text-[13px] transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] ${
+                        className={`flex w-full items-center gap-2.5 rounded-md px-2.5 py-2.5 text-left text-sm transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)] sm:py-1.5 sm:text-[13px] ${
                           isActive
                             ? "bg-muted text-foreground"
                             : "text-foreground-secondary hover:text-foreground"
@@ -208,7 +211,7 @@ export const CommandMenu = () => {
                         </span>
                         <span className="flex-1">{item.label}</span>
                         {isActive && (
-                          <span className="text-xs text-foreground-tertiary">
+                          <span className="hidden text-xs text-foreground-tertiary sm:inline">
                             &#8629;
                           </span>
                         )}
@@ -220,7 +223,8 @@ export const CommandMenu = () => {
             )}
           </div>
 
-          <div className="flex items-center gap-3 border-t border-border-subtle px-3 py-1.5">
+          {/* Keyboard hints — desktop only */}
+          <div className="hidden items-center gap-3 border-t border-border-subtle px-3 py-1.5 sm:flex">
             <div className="flex items-center gap-1.5 text-xs text-foreground-tertiary">
               <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">
                 &#8593;

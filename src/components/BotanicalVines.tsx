@@ -654,7 +654,9 @@ export const BotanicalVines = () => {
                 strokeLinejoin="round"
                 fill="none"
                 strokeDasharray={Math.round(el.pathLength * 100) / 100}
-                strokeDashoffset={Math.round(el.pathLength * (1 - elGrowth) * 100) / 100}
+                strokeDashoffset={
+                  Math.round(el.pathLength * (1 - elGrowth) * 100) / 100
+                }
               />
             );
           })}
@@ -663,7 +665,7 @@ export const BotanicalVines = () => {
     });
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[5] opacity-[0.12] dark:opacity-[0.18]">
+    <div className="pointer-events-none fixed inset-0 z-[5] hidden opacity-[0.12] dark:opacity-[0.18] md:block">
       {/* Left side */}
       <svg
         className="absolute left-0 top-0 text-foreground-tertiary"

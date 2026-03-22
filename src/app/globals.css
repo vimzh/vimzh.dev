@@ -229,8 +229,30 @@ body {
   }
   body {
     @apply bg-background text-foreground font-extralight;
+    -webkit-text-size-adjust: 100%;
   }
   html {
     @apply font-mono;
+    /* Prevent iOS tap highlight flash */
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Prevent horizontal overflow on mobile */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure prose content doesn't break layout */
+  .prose pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .prose img {
+    max-width: 100%;
+    height: auto;
   }
 }

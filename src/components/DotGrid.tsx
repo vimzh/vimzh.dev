@@ -23,6 +23,10 @@ export const DotGrid = () => {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
+    // Detect touch-only devices — use coarser grid spacing for performance
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const spacing = isMobile ? DOT_SPACING * 1.5 : DOT_SPACING;
+
     let dpr = window.devicePixelRatio || 1;
 
     const resize = () => {
@@ -63,16 +67,16 @@ export const DotGrid = () => {
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
 
-      const cols = Math.ceil(window.innerWidth / DOT_SPACING) + 1;
-      const rows = Math.ceil(window.innerHeight / DOT_SPACING) + 1;
+      const cols = Math.ceil(window.innerWidth / spacing) + 1;
+      const rows = Math.ceil(window.innerHeight / spacing) + 1;
 
       // Offset dots by scroll so the grid feels anchored to the page
-      const offsetY = scrollY % DOT_SPACING;
+      const offsetY = scrollY % spacing;
 
       for (let row = -1; row < rows; row++) {
-        const screenY = row * DOT_SPACING - offsetY;
+        const screenY = row * spacing - offsetY;
         for (let col = 0; col < cols; col++) {
-          const screenX = col * DOT_SPACING;
+          const screenX = col * spacing;
 
           const dx = screenX - mx;
           const dy = screenY - my;
@@ -130,9 +134,13 @@ export const DotGrid = () => {
     draw();
 
     observer.observe(document.documentElement);
-    window.addEventListener("mousemove", onMouseMove);
+
+    // Only attach mouse listeners on non-mobile (no hover on touch)
+    if (!isMobile) {
+      window.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseleave", onMouseLeave);
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("mouseleave", onMouseLeave);
 
     const themeObserver = new MutationObserver(() => {
       cancelAnimationFrame(animFrameRef.current);

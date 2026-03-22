@@ -42,7 +42,7 @@ export const OpenSourceSection = () => {
         {openSourceContributions.map((contrib) => (
           <div
             key={contrib.url}
-            className="flex items-start justify-between gap-4 px-3 py-2.5 -mx-3"
+            className="flex flex-col gap-2 px-3 py-2.5 -mx-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
           >
             <div className="flex items-start gap-2.5 min-w-0">
               <div
@@ -51,7 +51,7 @@ export const OpenSourceSection = () => {
                 <TypeIcon type={contrib.type} />
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-1.5">
+                <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-xs text-foreground-tertiary">
                     {contrib.owner}/
                   </span>
@@ -78,15 +78,22 @@ export const OpenSourceSection = () => {
                       {contrib.stars}
                     </span>
                   )}
+                  {/* Status badge inline on mobile */}
+                  <span
+                    className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[10px] font-medium sm:hidden ${statusStyles[contrib.status]}`}
+                  >
+                    {statusLabels[contrib.status]}
+                  </span>
                 </div>
-                <p className="mt-0.5 text-sm text-foreground-secondary truncate">
+                <p className="mt-0.5 text-sm text-foreground-secondary line-clamp-2 sm:truncate">
                   {contrib.description}
                 </p>
               </div>
             </div>
 
+            {/* Status badge on desktop — right-aligned */}
             <span
-              className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[10px] font-medium ${statusStyles[contrib.status]}`}
+              className={`hidden shrink-0 items-center rounded-full px-2 py-0.5 text-[10px] font-medium sm:inline-flex ${statusStyles[contrib.status]}`}
             >
               {statusLabels[contrib.status]}
             </span>

@@ -77,16 +77,19 @@ export const ContactDialog = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute inset-x-4 top-[12%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:inset-x-auto sm:left-1/2 sm:top-[20%] sm:w-full sm:-translate-x-1/2">
+      <div className="absolute inset-x-4 top-[8%] mx-auto max-w-[480px] animate-in fade-in slide-in-from-top-2 duration-200 sm:top-[20%] sm:inset-x-auto sm:left-1/2 sm:w-full sm:-translate-x-1/2">
         <div className="overflow-hidden rounded-lg border border-border-subtle bg-background/60 backdrop-blur-xl shadow-lg">
           <div className="border-b border-border-subtle px-3 py-2.5">
             <div className="flex items-center justify-between">
-              <span className="text-[13px] font-medium text-foreground">
+              <span className="text-sm font-medium text-foreground sm:text-[13px]">
                 Drop a message
               </span>
-              <kbd className="pointer-events-none flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-tertiary">
+              <button
+                onClick={close}
+                className="flex items-center rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium text-foreground-tertiary sm:pointer-events-none"
+              >
                 ESC
-              </kbd>
+              </button>
             </div>
           </div>
 
@@ -97,19 +100,19 @@ export const ContactDialog = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="w-full rounded-md border border-border-subtle bg-transparent px-3 py-2 text-[13px] text-foreground outline-none placeholder:text-foreground-tertiary focus:border-border"
+              className="w-full rounded-md border border-border-subtle bg-transparent px-3 py-2.5 text-sm text-foreground outline-none placeholder:text-foreground-tertiary focus:border-border sm:py-2 sm:text-[13px]"
             />
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="What's on your mind?"
               rows={4}
-              className="w-full resize-none rounded-md border border-border-subtle bg-transparent px-3 py-2 text-[13px] text-foreground outline-none placeholder:text-foreground-tertiary focus:border-border"
+              className="w-full resize-none rounded-md border border-border-subtle bg-transparent px-3 py-2.5 text-sm text-foreground outline-none placeholder:text-foreground-tertiary focus:border-border sm:py-2 sm:text-[13px]"
             />
           </div>
 
-          <div className="flex items-center justify-between border-t border-border-subtle px-3 py-2">
-            <div className="flex items-center gap-1.5 text-xs text-foreground-tertiary">
+          <div className="flex items-center justify-between border-t border-border-subtle px-3 py-2.5 sm:py-2">
+            <div className="hidden items-center gap-1.5 text-xs text-foreground-tertiary sm:flex">
               <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">
                 &#8984;
               </kbd>
@@ -126,7 +129,7 @@ export const ContactDialog = () => {
                 status === "sending" ||
                 status === "sent"
               }
-              className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-[12px] font-medium text-foreground-inverse transition-opacity hover:opacity-80 disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-4 py-2 text-[13px] font-medium text-foreground-inverse transition-opacity hover:opacity-80 disabled:opacity-40 sm:px-3 sm:py-1.5 sm:text-[12px]"
             >
               {status === "idle" && (
                 <>
