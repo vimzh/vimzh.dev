@@ -39,6 +39,7 @@ export const GitHubContributions = ({
         blockMargin={3}
         blockRadius={2}
         fontSize={12}
+        mobileWeeks={32} // Show only last ~8 months on mobile
         className="w-full [&_svg]:w-full [&_svg]:h-auto"
       >
         <ContributionGraphCalendar>

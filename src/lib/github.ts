@@ -84,7 +84,7 @@ export const fetchGitHubContributions = async (): Promise<{
   const json = (await res.json()) as GitHubResponse;
   const calendar = json.data.user.contributionsCollection.contributionCalendar;
 
-  const allActivities: Activity[] = calendar.weeks.flatMap((week) =>
+  const activities: Activity[] = calendar.weeks.flatMap((week) =>
     week.contributionDays.map((day) => ({
       date: day.date,
       count: day.contributionCount,
@@ -92,19 +92,8 @@ export const fetchGitHubContributions = async (): Promise<{
     })),
   );
 
-  // For mobile-friendly display, show only the last ~8 months (32 weeks)
-  // instead of the full year to prevent the graph from being too small
-  const WEEKS_TO_SHOW = 32; // ~8 months instead of ~12 months (52 weeks)
-  const activities = allActivities.slice(-WEEKS_TO_SHOW * 7);
-
-  // Recalculate total contributions for the visible period
-  const visibleTotalContributions = activities.reduce(
-    (sum, activity) => sum + activity.count,
-    0,
-  );
-
   return {
     activities,
-    totalContributions: visibleTotalContributions,
+    totalContributions: calendar.totalContributions,
   };
 };

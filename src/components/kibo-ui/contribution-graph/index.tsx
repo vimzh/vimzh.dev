@@ -86,6 +86,7 @@ type ContributionGraphContextType = {
   year: number;
   width: number;
   height: number;
+  mobileWeeks?: number;
 };
 
 const ContributionGraphContext =
@@ -235,6 +236,7 @@ export type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
   weekStart?: WeekDay;
   children: ReactNode;
   className?: string;
+  mobileWeeks?: number;
 };
 
 export const ContributionGraph = ({
@@ -249,6 +251,7 @@ export const ContributionGraph = ({
   totalCount: totalCountProp = undefined,
   weekStart = 0,
   className,
+  mobileWeeks,
   ...props
 }: ContributionGraphProps) => {
   const maxLevel = Math.max(1, maxLevelProp);
@@ -292,6 +295,7 @@ export const ContributionGraph = ({
         year,
         width,
         height,
+        mobileWeeks,
       }}
     >
       <div
@@ -368,13 +372,19 @@ export const ContributionGraphCalendar = ({
   children,
   ...props
 }: ContributionGraphCalendarProps) => {
-  const { weeks, width, height, blockSize, blockMargin, labels } =
+  const { weeks, width, height, blockSize, blockMargin, labels, mobileWeeks } =
     useContributionGraph();
 
   const monthLabels = useMemo(
     () => getMonthLabels(weeks, labels.months),
     [weeks, labels.months],
   );
+
+  // Calculate the starting week index for mobile view
+  // Show only the last N weeks on mobile
+  const mobileStartWeekIndex = mobileWeeks
+    ? Math.max(0, weeks.length - mobileWeeks)
+    : 0;
 
   return (
     <div
@@ -395,6 +405,11 @@ export const ContributionGraphCalendar = ({
                 dominantBaseline="hanging"
                 key={weekIndex}
                 x={(blockSize + blockMargin) * weekIndex}
+                className={
+                  mobileWeeks && weekIndex < mobileStartWeekIndex
+                    ? "hidden sm:block"
+                    : undefined
+                }
               >
                 {label}
               </text>
@@ -407,9 +422,14 @@ export const ContributionGraphCalendar = ({
               return null;
             }
 
+            // Hide older weeks on mobile when mobileWeeks is set
+            const isHiddenOnMobile = mobileWeeks && weekIndex < mobileStartWeekIndex;
+
             return (
               <Fragment key={`${weekIndex}-${dayIndex}`}>
-                {children({ activity, dayIndex, weekIndex })}
+                <g className={isHiddenOnMobile ? "hidden sm:block" : undefined}>
+                  {children({ activity, dayIndex, weekIndex })}
+                </g>
               </Fragment>
             );
           }),
