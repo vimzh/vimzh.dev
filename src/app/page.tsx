@@ -5,6 +5,7 @@ import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { OpenSourceSection } from "@/components/sections/OpenSourceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
 
 import { ContributionsLoader } from "@/components/sections/ContributionsLoader";
 import { personJsonLd, websiteJsonLd } from "@/lib/jsonld";
@@ -27,6 +28,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
+      <SkillsSection />
       <Suspense
         fallback={
           <section className="mx-auto w-full max-w-7xl px-5 pb-24 md:w-[60%] md:px-4">

@@ -3,6 +3,7 @@ import projectsJson from "@/content/projects.json";
 import experiencesJson from "@/content/experiences.json";
 import opensourceJson from "@/content/opensource.json";
 import componentsJson from "@/content/components.json";
+import skillsJson from "@/content/skills.json";
 
 export type Social = {
   icon: string;
@@ -90,9 +91,15 @@ export type ComponentItem = {
   previewBg: string;
 };
 
+export type Skill = {
+  name: string;
+  slug: string;
+};
+
 export const site = siteJson as SiteConfig;
 export const projects = projectsJson as Project[];
 export const experiences = experiencesJson as Experience[];
 export const openSourceContributions =
   opensourceJson as OpenSourceContribution[];
 export const components = componentsJson as ComponentItem[];
+export const skills = skillsJson as Skill[];
